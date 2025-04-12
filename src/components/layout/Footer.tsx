@@ -88,10 +88,18 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} PMI. Tüm hakları saklıdır.</p>
+        <div className="border-t border-gray-800 mt-12 pt-8 text-center">
+          <p className="text-gray-400 mb-6">&copy; {new Date().getFullYear()} PMI. Tüm hakları saklıdır.</p>
+          <div className="flex justify-center items-center">
+            <img 
+              src="/lovable-uploads/53a20f65-54c2-4350-b9fb-a889e4e65767.png" 
+              alt="THE REDS" 
+              className="h-10 opacity-80 hover:opacity-100 transition-opacity"
+            />
+          </div>
         </div>
       </div>
     </footer>
   );
 }
+
