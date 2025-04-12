@@ -71,16 +71,18 @@ export default function Navbar() {
                 <button 
                   onClick={() => toggleSubmenu(item.name)}
                   className={cn(
-                    "px-3 py-2 rounded-md text-sm font-medium flex items-center",
+                    "px-3 py-2 rounded-md text-sm font-medium flex items-center transition-all duration-200",
                     location.pathname === item.path 
-                      ? "text-brand-700" 
+                      ? "text-brand-700 font-semibold" 
                       : "text-gray-700 hover:text-brand-600 hover:bg-gray-100/80"
                   )}
                 >
-                  {item.name}
+                  <span className="relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-brand-600 after:scale-x-0 after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">
+                    {item.name}
+                  </span>
                   <ChevronDown 
                     className={cn(
-                      "ml-1 h-4 w-4 transition-transform", 
+                      "ml-1 h-4 w-4 transition-transform duration-200", 
                       openSubmenu === item.name ? "rotate-180" : ""
                     )} 
                   />
@@ -89,13 +91,15 @@ export default function Navbar() {
                 <Link
                   to={item.path}
                   className={cn(
-                    "px-3 py-2 rounded-md text-sm font-medium",
+                    "px-3 py-2 rounded-md text-sm font-medium transition-all duration-200",
                     location.pathname === item.path 
-                      ? "text-brand-700" 
+                      ? "text-brand-700 font-semibold" 
                       : "text-gray-700 hover:text-brand-600 hover:bg-gray-100/80"
                   )}
                 >
-                  {item.name}
+                  <span className="relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-brand-600 after:scale-x-0 after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">
+                    {item.name}
+                  </span>
                 </Link>
               )}
 
@@ -115,8 +119,8 @@ export default function Navbar() {
                         key={subItem.name}
                         to={subItem.path}
                         className={cn(
-                          "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100",
-                          location.pathname === subItem.path ? "bg-gray-100" : ""
+                          "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200",
+                          location.pathname === subItem.path ? "bg-gray-100 font-medium" : ""
                         )}
                       >
                         {subItem.name}
@@ -132,7 +136,7 @@ export default function Navbar() {
         {/* Mobile Navigation Button */}
         <button
           type="button"
-          className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-brand-600 hover:bg-gray-100 focus:outline-none"
+          className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-brand-600 hover:bg-gray-100 focus:outline-none transition-colors duration-200"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -154,7 +158,7 @@ export default function Navbar() {
           />
           <button
             type="button"
-            className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-brand-600 hover:bg-gray-100 focus:outline-none"
+            className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-brand-600 hover:bg-gray-100 focus:outline-none transition-colors duration-200"
             onClick={() => setIsOpen(false)}
           >
             <X className="h-6 w-6" />
@@ -167,23 +171,23 @@ export default function Navbar() {
                 <>
                   <button
                     onClick={() => toggleSubmenu(item.name)}
-                    className="w-full flex items-center justify-between px-3 py-2 rounded-md text-gray-700 hover:text-brand-600 hover:bg-gray-100"
+                    className="w-full flex items-center justify-between px-3 py-2 rounded-md text-gray-700 hover:text-brand-600 hover:bg-gray-100 transition-colors duration-200"
                   >
-                    <span>{item.name}</span>
+                    <span className="font-medium">{item.name}</span>
                     <ChevronDown 
                       className={cn(
-                        "ml-1 h-4 w-4 transition-transform", 
+                        "ml-1 h-4 w-4 transition-transform duration-200", 
                         openSubmenu === item.name ? "rotate-180" : ""
                       )} 
                     />
                   </button>
                   {openSubmenu === item.name && (
-                    <div className="pl-4 py-1 space-y-1">
+                    <div className="pl-4 py-1 space-y-1 animate-fade-in">
                       {item.submenu.map((subItem) => (
                         <Link
                           key={subItem.name}
                           to={subItem.path}
-                          className="block px-3 py-2 rounded-md text-gray-700 hover:text-brand-600 hover:bg-gray-100"
+                          className="block px-3 py-2 rounded-md text-gray-700 hover:text-brand-600 hover:bg-gray-100 transition-colors duration-200"
                           onClick={() => setIsOpen(false)}
                         >
                           {subItem.name}
@@ -195,10 +199,10 @@ export default function Navbar() {
               ) : (
                 <Link
                   to={item.path}
-                  className="block px-3 py-2 rounded-md text-gray-700 hover:text-brand-600 hover:bg-gray-100"
+                  className="block px-3 py-2 rounded-md text-gray-700 hover:text-brand-600 hover:bg-gray-100 transition-colors duration-200"
                   onClick={() => setIsOpen(false)}
                 >
-                  {item.name}
+                  <span className="font-medium">{item.name}</span>
                 </Link>
               )}
             </div>
