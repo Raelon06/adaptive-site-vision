@@ -56,7 +56,11 @@ export default function Navbar() {
     >
       <div className="container-custom flex items-center justify-between">
         <Link to="/" className="flex items-center">
-          <h1 className="text-2xl font-bold text-brand-800">PMI</h1>
+          <img 
+            src="/lovable-uploads/942c5a63-00ab-421a-89f8-d8a625bca962.png" 
+            alt="KÖBEOĞLU PMI THE REDS KAZANIR" 
+            className="h-12 md:h-14 w-auto"
+          />
         </Link>
 
         {/* Desktop Navigation */}
@@ -143,7 +147,11 @@ export default function Navbar() {
         )}
       >
         <div className="flex items-center justify-between p-4 border-b">
-          <h1 className="text-2xl font-bold text-brand-800">PMI</h1>
+          <img 
+            src="/lovable-uploads/942c5a63-00ab-421a-89f8-d8a625bca962.png" 
+            alt="KÖBEOĞLU PMI THE REDS KAZANIR" 
+            className="h-10 w-auto"
+          />
           <button
             type="button"
             className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-brand-600 hover:bg-gray-100 focus:outline-none"
