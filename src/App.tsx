@@ -13,6 +13,8 @@ import Coaching from "./pages/Coaching";
 import AINews from "./pages/AINews";
 import Training from "./pages/Training";
 import NotFound from "./pages/NotFound";
+import RoadMap from "./pages/RoadMap";
+import SupervisorNotes from "./pages/SupervisorNotes";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +29,8 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/team" element={<Team />} />
           <Route path="/2025" element={<Vision2025 />} />
+          <Route path="/roadmap" element={<RoadMap />} />
+          <Route path="/supervisor-notes" element={<SupervisorNotes />} />
           <Route path="/goals-results" element={<GoalsResults />} />
           <Route path="/coaching" element={<Coaching />} />
           <Route path="/ai-news" element={<AINews />} />

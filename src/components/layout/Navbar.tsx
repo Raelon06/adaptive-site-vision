@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, CalendarDays, Map, FileText } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { cn } from '@/lib/utils';
 
@@ -14,7 +14,15 @@ const menuItems = [
       { name: 'Ekibimiz', path: '/team' }
     ] 
   },
-  { name: '2025', path: '/2025' },
+  { 
+    name: '2025', 
+    path: '/2025',
+    submenu: [
+      { name: '2025 Hedefleri', path: '/2025', icon: <CalendarDays className="h-4 w-4 mr-1" /> },
+      { name: 'Sakarya Güney Batı Road Map', path: '/roadmap', icon: <Map className="h-4 w-4 mr-1" /> },
+      { name: 'EZD Supervisor Notlar', path: '/supervisor-notes', icon: <FileText className="h-4 w-4 mr-1" /> }
+    ]
+  },
   { name: 'Hedefler & Sonuçlar', path: '/goals-results' },
   { name: 'Koçluk', path: '/coaching' },
   { name: 'Yapay Zeka', path: '/ai-news' },
@@ -107,7 +115,7 @@ export default function Navbar() {
               {item.submenu && (
                 <div 
                   className={cn(
-                    "absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 transition-all transform origin-top-right",
+                    "absolute left-0 mt-2 w-64 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 transition-all transform origin-top-right",
                     openSubmenu === item.name 
                       ? "opacity-100 scale-100" 
                       : "opacity-0 scale-95 pointer-events-none"
@@ -119,10 +127,11 @@ export default function Navbar() {
                         key={subItem.name}
                         to={subItem.path}
                         className={cn(
-                          "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200",
+                          "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 flex items-center",
                           location.pathname === subItem.path ? "bg-gray-100 font-medium" : ""
                         )}
                       >
+                        {subItem.icon && subItem.icon}
                         {subItem.name}
                       </Link>
                     ))}
@@ -187,10 +196,11 @@ export default function Navbar() {
                         <Link
                           key={subItem.name}
                           to={subItem.path}
-                          className="block px-3 py-2 rounded-md text-gray-700 hover:text-brand-600 hover:bg-gray-100 transition-colors duration-200"
+                          className="block px-3 py-2 rounded-md text-gray-700 hover:text-brand-600 hover:bg-gray-100 transition-colors duration-200 flex items-center"
                           onClick={() => setIsOpen(false)}
                         >
-                          {subItem.name}
+                          {subItem.icon && subItem.icon}
+                          <span className="ml-1">{subItem.name}</span>
                         </Link>
                       ))}
                     </div>
