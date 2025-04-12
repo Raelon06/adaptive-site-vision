@@ -3,7 +3,7 @@ import Layout from "@/components/layout/Layout";
 import { HeroSection } from "@/components/ui/hero-section";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ExternalLink, Play, Globe, BookOpen, Key, Award } from "lucide-react";
+import { ArrowRight, ExternalLink, Play, Globe, BookOpen, Key, Award, Clock } from "lucide-react";
 
 const trainingPlatforms = [
   {
