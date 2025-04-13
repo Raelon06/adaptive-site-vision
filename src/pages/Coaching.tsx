@@ -1,10 +1,10 @@
-
 import Layout from "@/components/layout/Layout";
 import { HeroSection } from "@/components/ui/hero-section";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight, Play, Calendar, Clock, Award, BookOpen } from "lucide-react";
+import { ArrowRight, Play, Calendar, Clock, Award, BookOpen, Star, Plus, ArrowUp } from "lucide-react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const coachingPrograms = [
   {
@@ -136,6 +136,65 @@ const Coaching = () => {
         subtitle="Kişisel ve profesyonel gelişiminiz için özel tasarlanmış eğitimler"
         backgroundImage="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1771&q=80"
       />
+
+      <section className="py-12 bg-gray-50">
+        <div className="container-custom">
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h2 className="text-2xl font-bold mb-4 font-serif">Koçluk Seviyeleri</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+              <div className="border rounded-lg p-5 hover:shadow-md transition-shadow">
+                <div className="flex items-center mb-3">
+                  <div className="bg-green-100 p-2 rounded-full mr-3">
+                    <Plus className="h-6 w-6 text-green-600" />
+                  </div>
+                  <h3 className="text-xl font-semibold">Yeni</h3>
+                </div>
+                <p className="text-gray-600">Koçluk sürecine yeni başlayan veya 6 aydan az deneyime sahip olan kişiler için temel seviye programlar.</p>
+              </div>
+              
+              <div className="border rounded-lg p-5 hover:shadow-md transition-shadow">
+                <div className="flex items-center mb-3">
+                  <div className="bg-blue-100 p-2 rounded-full mr-3">
+                    <ArrowUp className="h-6 w-6 text-blue-600" />
+                  </div>
+                  <h3 className="text-xl font-semibold">Gelişiyorum</h3>
+                </div>
+                <p className="text-gray-600">6-18 ay arası deneyime sahip, temel koçluk becerilerini geliştiren ve ileri seviye tekniklere ilerleyen kişiler için.</p>
+              </div>
+              
+              <div className="border rounded-lg p-5 hover:shadow-md transition-shadow">
+                <div className="flex items-center mb-3">
+                  <div className="bg-purple-100 p-2 rounded-full mr-3">
+                    <Star className="h-6 w-6 text-purple-600" />
+                  </div>
+                  <h3 className="text-xl font-semibold">Uzman Seviye</h3>
+                </div>
+                <p className="text-gray-600">18 aydan fazla deneyime sahip, ileri düzey koçluk teknikleri uygulayan ve diğerlerine mentorluk yapabilen kişiler için.</p>
+              </div>
+            </div>
+            
+            <div className="mt-8">
+              <Accordion type="single" collapsible className="bg-gray-50 rounded-lg">
+                <AccordionItem value="item-1">
+                  <AccordionTrigger className="px-4 py-3 hover:bg-gray-100 rounded-t-lg">
+                    Koçluk Seviyelerini Nasıl İlerletebilirim?
+                  </AccordionTrigger>
+                  <AccordionContent className="px-4 py-3">
+                    <p className="mb-2">Koçluk seviyenizi ilerletmek için şu adımları takip edebilirsiniz:</p>
+                    <ul className="list-disc pl-5 space-y-1">
+                      <li>Düzenli olarak eğitimlere katılın</li>
+                      <li>Uygulama seanslarında aktif rol alın</li>
+                      <li>Geri bildirimleri dikkate alarak kendinizi geliştirin</li>
+                      <li>Yıllık değerlendirme sınavlarına girin</li>
+                      <li>Mentorluk programlarına dahil olun</li>
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="py-20">
         <div className="container-custom">

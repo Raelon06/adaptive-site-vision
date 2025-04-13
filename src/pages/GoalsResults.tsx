@@ -1,4 +1,3 @@
-
 import React from "react";
 import Layout from "@/components/layout/Layout";
 import { HeroSection } from "@/components/ui/hero-section";
@@ -6,11 +5,12 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Download, FileSpreadsheet, FileText, Eye, Target, Bookmark, MapPin, Store, ChevronDown, ChevronUp, Users, Database } from "lucide-react";
+import { Download, FileSpreadsheet, FileText, Eye, Target, Bookmark, MapPin, Store, ChevronDown, ChevronUp, Users, Database, Check } from "lucide-react";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 const documentsList = [
   {
@@ -118,13 +118,13 @@ const specialTargets = [
   }
 ];
 
-// EZD DR locations data with expanded details
+// EZD DR locations data with expanded details and updated managers
 const ezdLocations = [
   {
     id: 1,
     name: "Sapanca",
     target: "₺420.000",
-    manager: "Ahmet Yılmaz",
+    manager: "Olcay Köksal",
     status: "İyi",
     representative: {
       name: "Gökhan",
@@ -162,7 +162,7 @@ const ezdLocations = [
     id: 2,
     name: "Akyazı",
     target: "₺380.000",
-    manager: "Mehmet Kaya",
+    manager: "Anıl Samur",
     status: "Orta",
     representative: {
       name: "Samet",
@@ -192,7 +192,7 @@ const ezdLocations = [
     id: 3,
     name: "Geyve",
     target: "₺350.000",
-    manager: "Ayşe Demir",
+    manager: "Olcay Köksal",
     status: "İyi",
     representative: {
       name: "Alper",
@@ -222,7 +222,7 @@ const ezdLocations = [
     id: 4,
     name: "Pamukova",
     target: "₺290.000",
-    manager: "Fatma Şahin",
+    manager: "Olcay Köksal",
     status: "Geliştirilmeli",
     representative: {
       name: "Kaan",
@@ -252,7 +252,7 @@ const ezdLocations = [
     id: 5,
     name: "Serdivan-Üniversite",
     target: "₺520.000",
-    manager: "Ali Öztürk",
+    manager: "Olcay Köksal",
     status: "Çok İyi",
     representative: {
       name: "Ersin",
@@ -290,7 +290,7 @@ const ezdLocations = [
     id: 6,
     name: "Camili - Karaman",
     target: "₺310.000",
-    manager: "Zeynep Kılıç",
+    manager: "Olcay Köksal",
     status: "Orta",
     representative: {
       name: "Talat",
@@ -320,7 +320,7 @@ const ezdLocations = [
     id: 7,
     name: "Karapürçek - Küçücek",
     target: "₺280.000",
-    manager: "Mustafa Yıldız",
+    manager: "Anıl Samur",
     status: "Geliştirilmeli",
     representative: {
       name: "Kerem",
@@ -348,9 +348,18 @@ const ezdLocations = [
   }
 ];
 
+// Status options
+const statusOptions = [
+  { value: "Çok İyi", color: "bg-green-100 text-green-800" },
+  { value: "İyi", color: "bg-blue-100 text-blue-800" },
+  { value: "Orta", color: "bg-yellow-100 text-yellow-800" },
+  { value: "Geliştirilmeli", color: "bg-red-100 text-red-800" }
+];
+
 const GoalsResults = () => {
   const [selectedLocation, setSelectedLocation] = useState<number | null>(null);
   const [openDialogId, setOpenDialogId] = useState<number | null>(null);
+  const [locations, setLocations] = useState(ezdLocations);
   
   const toggleLocation = (locationId: number) => {
     if (selectedLocation === locationId) {
@@ -362,6 +371,21 @@ const GoalsResults = () => {
   
   const openLocationDialog = (locationId: number) => {
     setOpenDialogId(locationId);
+  };
+
+  const updateLocationStatus = (locationId: number, newStatus: string) => {
+    setLocations(prevLocations => 
+      prevLocations.map(location => 
+        location.id === locationId 
+          ? { ...location, status: newStatus } 
+          : location
+      )
+    );
+  };
+
+  const getStatusColor = (status: string) => {
+    const statusOption = statusOptions.find(option => option.value === status);
+    return statusOption ? statusOption.color : "";
   };
 
   return (
@@ -394,7 +418,7 @@ const GoalsResults = () => {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {ezdLocations.map((location) => (
+                  {locations.map((location) => (
                     <React.Fragment key={location.id}>
                       <TableRow 
                         className="hover:bg-gray-50 cursor-pointer"
@@ -412,23 +436,52 @@ const GoalsResults = () => {
                         <TableCell>{location.target}</TableCell>
                         <TableCell>{location.manager}</TableCell>
                         <TableCell>
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium
-                            ${location.status === 'Çok İyi' ? 'bg-green-100 text-green-800' : 
-                              location.status === 'İyi' ? 'bg-blue-100 text-blue-800' : 
-                              location.status === 'Orta' ? 'bg-yellow-100 text-yellow-800' : 
-                              'bg-red-100 text-red-800'}`}>
-                            {location.status}
-                          </span>
+                          <Popover>
+                            <PopoverTrigger asChild>
+                              <button 
+                                className="px-2 py-1 rounded-full text-xs font-medium inline-flex items-center"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(location.status)}`}>
+                                  {location.status}
+                                </span>
+                                <ChevronDown className="h-3 w-3 ml-1 text-gray-500" />
+                              </button>
+                            </PopoverTrigger>
+                            <PopoverContent className="w-48 p-3" onClick={(e) => e.stopPropagation()}>
+                              <h4 className="font-medium mb-2">Durum Seç</h4>
+                              <RadioGroup 
+                                defaultValue={location.status}
+                                onValueChange={(value) => updateLocationStatus(location.id, value)}
+                              >
+                                {statusOptions.map((option) => (
+                                  <div key={option.value} className="flex items-center space-x-2 mb-1">
+                                    <RadioGroupItem value={option.value} id={`status-${location.id}-${option.value}`} />
+                                    <label 
+                                      htmlFor={`status-${location.id}-${option.value}`}
+                                      className={`px-2 py-1 rounded-full text-xs font-medium ${option.color} cursor-pointer flex items-center`}
+                                    >
+                                      {location.status === option.value && <Check className="h-3 w-3 mr-1" />}
+                                      {option.value}
+                                    </label>
+                                  </div>
+                                ))}
+                              </RadioGroup>
+                            </PopoverContent>
+                          </Popover>
                         </TableCell>
                         <TableCell>
                           <Popover>
                             <PopoverTrigger asChild>
-                              <button className="flex items-center hover:text-brand-600 transition-colors">
+                              <button 
+                                className="flex items-center hover:text-brand-600 transition-colors"
+                                onClick={(e) => e.stopPropagation()}
+                              >
                                 <Users className="h-4 w-4 mr-1" />
                                 {location.representative.name}
                               </button>
                             </PopoverTrigger>
-                            <PopoverContent className="w-80">
+                            <PopoverContent className="w-80" onClick={(e) => e.stopPropagation()}>
                               <div className="flex items-center space-x-4 mb-2">
                                 <Avatar className="h-16 w-16">
                                   <AvatarImage src={location.representative.image} />
@@ -724,52 +777,3 @@ const GoalsResults = () => {
                   ))}
                 </TableBody>
               </Table>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 bg-gray-50">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold mb-6 font-serif">Hedef Belirleme Metodolojimiz</h2>
-              <p className="text-lg text-gray-700 mb-6">
-                PMI olarak, SMART (Specific, Measurable, Achievable, Relevant, Time-bound) hedef belirleme 
-                metodolojisini benimsiyoruz. Bu yaklaşım sayesinde, net, ölçülebilir, ulaşılabilir, 
-                ilgili ve zamana bağlı hedefler belirleyerek, performansımızı sürekli olarak izliyor ve 
-                geliştiriyoruz.
-              </p>
-              <p className="text-lg text-gray-700 mb-6">
-                Hedeflerimizi belirlerken, pazar koşullarını, müşteri beklentilerini ve şirket stratejilerimizi 
-                göz önünde bulundurarak, gerçekçi ve aynı zamanda zorlayıcı hedefler belirliyoruz. 
-                Bu hedefleri düzenli olarak gözden geçirerek, gerektiğinde güncelliyor ve sürekli iyileştirme 
-                yaklaşımıyla çalışıyoruz.
-              </p>
-            </div>
-            <div>
-              <img 
-                src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" 
-                alt="Hedef Belirleme" 
-                className="rounded-lg shadow-xl" 
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20">
-        <div className="container-custom">
-          <div className="bg-white p-8 rounded-lg shadow-md border border-gray-100">
-            <h3 className="text-2xl font-bold mb-6 text-center font-serif">Yeni Dokümanlara Erişim</h3>
-            <p className="text-center text-gray-700 mb-8">
-              Yeni eklenen dokümanlara buradan erişebilir ve güncel hedef/sonuç raporlarını takip edebilirsiniz.
-            </p>
-          </div>
-        </div>
-      </section>
-    </Layout>
-  );
-};
-
-export default GoalsResults;
