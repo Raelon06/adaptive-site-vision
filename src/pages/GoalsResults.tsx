@@ -1,11 +1,14 @@
-
 import Layout from "@/components/layout/Layout";
 import { HeroSection } from "@/components/ui/hero-section";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Download, FileSpreadsheet, FileText, Eye, Target, Bookmark, MapPin, Store } from "lucide-react";
+import { Download, FileSpreadsheet, FileText, Eye, Target, Bookmark, MapPin, Store, ChevronDown, ChevronUp, Users, Database } from "lucide-react";
+import { useState } from "react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 const documentsList = [
   {
@@ -113,60 +116,252 @@ const specialTargets = [
   }
 ];
 
-// EZD DR locations data
+// EZD DR locations data with expanded details
 const ezdLocations = [
   {
     id: 1,
     name: "Sapanca",
     target: "₺420.000",
     manager: "Ahmet Yılmaz",
-    status: "İyi"
+    status: "İyi",
+    representative: {
+      name: "Gökhan",
+      image: "https://randomuser.me/api/portraits/men/1.jpg",
+      position: "Satış Temsilcisi"
+    },
+    territories: [
+      { 
+        name: "Sapanca Merkez", 
+        excelData: {
+          title: "Sapanca Bölgesi Satış Raporu",
+          date: "10 Nisan 2024",
+          size: "850 KB"
+        }
+      },
+      { 
+        name: "Sapanca Göl Çevresi", 
+        excelData: {
+          title: "Sapanca Göl Bölgesi Satış Raporu",
+          date: "15 Nisan 2024",
+          size: "720 KB"
+        }
+      },
+      { 
+        name: "Kırkpınar", 
+        excelData: {
+          title: "Kırkpınar Müşteri Analizi",
+          date: "5 Nisan 2024",
+          size: "540 KB"
+        }
+      }
+    ]
   },
   {
     id: 2,
     name: "Akyazı",
     target: "₺380.000",
     manager: "Mehmet Kaya",
-    status: "Orta"
+    status: "Orta",
+    representative: {
+      name: "Samet",
+      image: "https://randomuser.me/api/portraits/men/2.jpg",
+      position: "Satış Temsilcisi"
+    },
+    territories: [
+      { 
+        name: "Akyazı Merkez", 
+        excelData: {
+          title: "Akyazı Merkez Satış Verileri",
+          date: "8 Nisan 2024",
+          size: "620 KB"
+        }
+      },
+      { 
+        name: "Alaağaç", 
+        excelData: {
+          title: "Alaağaç Bölgesi Performans Raporu",
+          date: "12 Nisan 2024",
+          size: "580 KB"
+        }
+      }
+    ]
   },
   {
     id: 3,
     name: "Geyve",
     target: "₺350.000",
     manager: "Ayşe Demir",
-    status: "İyi"
+    status: "İyi",
+    representative: {
+      name: "Alper",
+      image: "https://randomuser.me/api/portraits/men/3.jpg",
+      position: "Satış Temsilcisi"
+    },
+    territories: [
+      { 
+        name: "Geyve Merkez", 
+        excelData: {
+          title: "Geyve Merkez Satış Raporu",
+          date: "6 Nisan 2024",
+          size: "490 KB"
+        }
+      },
+      { 
+        name: "Alifuatpaşa", 
+        excelData: {
+          title: "Alifuatpaşa Bölgesi Müşteri Analizi",
+          date: "9 Nisan 2024",
+          size: "530 KB"
+        }
+      }
+    ]
   },
   {
     id: 4,
     name: "Pamukova",
     target: "₺290.000",
     manager: "Fatma Şahin",
-    status: "Geliştirilmeli"
+    status: "Geliştirilmeli",
+    representative: {
+      name: "Kaan",
+      image: "https://randomuser.me/api/portraits/men/4.jpg",
+      position: "Satış Temsilcisi"
+    },
+    territories: [
+      { 
+        name: "Pamukova Merkez", 
+        excelData: {
+          title: "Pamukova Merkez Satış Raporu",
+          date: "7 Nisan 2024",
+          size: "460 KB"
+        }
+      },
+      { 
+        name: "Turgutlu", 
+        excelData: {
+          title: "Turgutlu Bölgesi Performans Analizi",
+          date: "11 Nisan 2024",
+          size: "420 KB"
+        }
+      }
+    ]
   },
   {
     id: 5,
     name: "Serdivan-Üniversite",
     target: "₺520.000",
     manager: "Ali Öztürk",
-    status: "Çok İyi"
+    status: "Çok İyi",
+    representative: {
+      name: "Ersin",
+      image: "https://randomuser.me/api/portraits/men/5.jpg",
+      position: "Satış Temsilcisi"
+    },
+    territories: [
+      { 
+        name: "Üniversite Kampüs", 
+        excelData: {
+          title: "Kampüs Bölgesi Satış Raporu",
+          date: "5 Nisan 2024",
+          size: "780 KB"
+        }
+      },
+      { 
+        name: "Serdivan AVM", 
+        excelData: {
+          title: "AVM Bölgesi Satış Performansı",
+          date: "9 Nisan 2024",
+          size: "850 KB"
+        }
+      },
+      { 
+        name: "Bahçelievler", 
+        excelData: {
+          title: "Bahçelievler Müşteri Analizi",
+          date: "12 Nisan 2024",
+          size: "630 KB"
+        }
+      }
+    ]
   },
   {
     id: 6,
     name: "Camili - Karaman",
     target: "₺310.000",
     manager: "Zeynep Kılıç",
-    status: "Orta"
+    status: "Orta",
+    representative: {
+      name: "Talat",
+      image: "https://randomuser.me/api/portraits/men/6.jpg",
+      position: "Satış Temsilcisi"
+    },
+    territories: [
+      { 
+        name: "Camili", 
+        excelData: {
+          title: "Camili Bölgesi Satış Raporu",
+          date: "6 Nisan 2024",
+          size: "510 KB"
+        }
+      },
+      { 
+        name: "Karaman", 
+        excelData: {
+          title: "Karaman Bölgesi Performans Analizi",
+          date: "10 Nisan 2024",
+          size: "470 KB"
+        }
+      }
+    ]
   },
   {
     id: 7,
     name: "Karapürçek - Küçücek",
     target: "₺280.000",
     manager: "Mustafa Yıldız",
-    status: "Geliştirilmeli"
+    status: "Geliştirilmeli",
+    representative: {
+      name: "Kerem",
+      image: "https://randomuser.me/api/portraits/men/7.jpg",
+      position: "Satış Temsilcisi"
+    },
+    territories: [
+      { 
+        name: "Karapürçek", 
+        excelData: {
+          title: "Karapürçek Satış Verileri",
+          date: "4 Nisan 2024",
+          size: "390 KB"
+        }
+      },
+      { 
+        name: "Küçücek", 
+        excelData: {
+          title: "Küçücek Bölgesi Müşteri Analizi",
+          date: "8 Nisan 2024",
+          size: "420 KB"
+        }
+      }
+    ]
   }
 ];
 
 const GoalsResults = () => {
+  const [selectedLocation, setSelectedLocation] = useState<number | null>(null);
+  const [openDialogId, setOpenDialogId] = useState<number | null>(null);
+  
+  const toggleLocation = (locationId: number) => {
+    if (selectedLocation === locationId) {
+      setSelectedLocation(null);
+    } else {
+      setSelectedLocation(locationId);
+    }
+  };
+  
+  const openLocationDialog = (locationId: number) => {
+    setOpenDialogId(locationId);
+  };
+
   return (
     <Layout>
       <HeroSection
@@ -174,6 +369,226 @@ const GoalsResults = () => {
         subtitle="Satış hedeflerimiz ve performans sonuçlarımız"
         backgroundImage="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
       />
+
+      {/* EZD DR'ları - Interactive Section */}
+      <section className="py-20">
+        <div className="container-custom">
+          <SectionHeader
+            title="EZD DR'ları Detaylı Görünüm"
+            subtitle="Tüm bölge ve lokasyon detaylarına buradan erişebilirsiniz"
+          />
+          
+          <div className="bg-white rounded-lg shadow-md overflow-hidden mb-16">
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="font-bold">Lokasyon</TableHead>
+                    <TableHead className="font-bold">Hedef</TableHead>
+                    <TableHead className="font-bold">Sorumlu Yönetici</TableHead>
+                    <TableHead className="font-bold">Durum</TableHead>
+                    <TableHead className="font-bold">Temsilci</TableHead>
+                    <TableHead className="font-bold">Detaylar</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {ezdLocations.map((location) => (
+                    <React.Fragment key={location.id}>
+                      <TableRow 
+                        className="hover:bg-gray-50 cursor-pointer"
+                        onClick={() => toggleLocation(location.id)}
+                      >
+                        <TableCell className="flex items-center font-medium">
+                          <MapPin className="h-4 w-4 mr-2 text-brand-600" />
+                          {location.name}
+                          {selectedLocation === location.id ? (
+                            <ChevronUp className="h-4 w-4 ml-2 text-gray-500" />
+                          ) : (
+                            <ChevronDown className="h-4 w-4 ml-2 text-gray-500" />
+                          )}
+                        </TableCell>
+                        <TableCell>{location.target}</TableCell>
+                        <TableCell>{location.manager}</TableCell>
+                        <TableCell>
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium
+                            ${location.status === 'Çok İyi' ? 'bg-green-100 text-green-800' : 
+                              location.status === 'İyi' ? 'bg-blue-100 text-blue-800' : 
+                              location.status === 'Orta' ? 'bg-yellow-100 text-yellow-800' : 
+                              'bg-red-100 text-red-800'}`}>
+                            {location.status}
+                          </span>
+                        </TableCell>
+                        <TableCell>
+                          <Popover>
+                            <PopoverTrigger asChild>
+                              <button className="flex items-center hover:text-brand-600 transition-colors">
+                                <Users className="h-4 w-4 mr-1" />
+                                {location.representative.name}
+                              </button>
+                            </PopoverTrigger>
+                            <PopoverContent className="w-80">
+                              <div className="flex items-center space-x-4 mb-2">
+                                <Avatar className="h-16 w-16">
+                                  <AvatarImage src={location.representative.image} />
+                                  <AvatarFallback>{location.representative.name.charAt(0)}</AvatarFallback>
+                                </Avatar>
+                                <div>
+                                  <h4 className="text-lg font-semibold">{location.representative.name}</h4>
+                                  <p className="text-sm text-gray-500">{location.representative.position}</p>
+                                  <p className="text-sm text-gray-700 mt-1">{location.name} Bölgesi</p>
+                                </div>
+                              </div>
+                            </PopoverContent>
+                          </Popover>
+                        </TableCell>
+                        <TableCell>
+                          <Button 
+                            size="sm" 
+                            variant="outline" 
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              openLocationDialog(location.id);
+                            }}
+                          >
+                            <Database className="h-4 w-4 mr-1" />
+                            Detaylar
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                      
+                      {/* Expanded Row for Territories */}
+                      {selectedLocation === location.id && (
+                        <TableRow>
+                          <TableCell colSpan={6} className="p-0 bg-gray-50">
+                            <div className="p-4">
+                              <h4 className="text-lg font-medium mb-3 flex items-center">
+                                <MapPin className="h-4 w-4 mr-2 text-brand-600" />
+                                {location.name} Bölgesi Territoryleri
+                              </h4>
+                              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                {location.territories.map((territory, index) => (
+                                  <Card key={index} className="hover:shadow-md transition-shadow duration-200">
+                                    <CardHeader className="pb-2">
+                                      <CardTitle className="text-md">{territory.name}</CardTitle>
+                                    </CardHeader>
+                                    <CardContent>
+                                      <div className="flex items-start space-x-3">
+                                        <FileSpreadsheet className="h-8 w-8 text-green-600 flex-shrink-0" />
+                                        <div>
+                                          <p className="text-sm font-medium">{territory.excelData.title}</p>
+                                          <p className="text-xs text-gray-500 mt-1">{territory.excelData.date} • {territory.excelData.size}</p>
+                                          <Button variant="link" size="sm" className="px-0 mt-1">
+                                            <Download className="h-3 w-3 mr-1" />
+                                            İndir
+                                          </Button>
+                                        </div>
+                                      </div>
+                                    </CardContent>
+                                  </Card>
+                                ))}
+                              </div>
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      )}
+                      
+                      {/* Location Detail Dialog */}
+                      <Dialog 
+                        open={openDialogId === location.id} 
+                        onOpenChange={(open) => {
+                          if (!open) setOpenDialogId(null);
+                        }}
+                      >
+                        <DialogContent className="max-w-3xl">
+                          <DialogHeader>
+                            <DialogTitle className="text-2xl flex items-center">
+                              <MapPin className="h-5 w-5 mr-2 text-brand-600" />
+                              {location.name} Bölgesi Detaylı Bilgiler
+                            </DialogTitle>
+                          </DialogHeader>
+                          
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-4">
+                            <div>
+                              <h3 className="text-lg font-semibold mb-4 flex items-center">
+                                <Users className="h-5 w-5 mr-2 text-brand-600" />
+                                Satış Temsilcisi
+                              </h3>
+                              <div className="bg-gray-50 p-4 rounded-lg">
+                                <div className="flex items-center space-x-4">
+                                  <Avatar className="h-20 w-20">
+                                    <AvatarImage src={location.representative.image} />
+                                    <AvatarFallback>{location.representative.name.charAt(0)}</AvatarFallback>
+                                  </Avatar>
+                                  <div>
+                                    <h4 className="text-xl font-semibold">{location.representative.name}</h4>
+                                    <p className="text-gray-600">{location.representative.position}</p>
+                                    <div className="flex items-center mt-2">
+                                      <span className="text-sm text-gray-500 mr-3">Hedef: {location.target}</span>
+                                      <span className={`px-2 py-1 text-xs font-medium rounded-full
+                                        ${location.status === 'Çok İyi' ? 'bg-green-100 text-green-800' : 
+                                          location.status === 'İyi' ? 'bg-blue-100 text-blue-800' : 
+                                          location.status === 'Orta' ? 'bg-yellow-100 text-yellow-800' : 
+                                          'bg-red-100 text-red-800'}`}>
+                                        {location.status}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div>
+                              <h3 className="text-lg font-semibold mb-4 flex items-center">
+                                <Target className="h-5 w-5 mr-2 text-brand-600" />
+                                Bölge Bilgileri
+                              </h3>
+                              <div className="bg-gray-50 p-4 rounded-lg">
+                                <p className="mb-2"><strong>Yönetici:</strong> {location.manager}</p>
+                                <p className="mb-2"><strong>Territory Sayısı:</strong> {location.territories.length}</p>
+                                <p className="mb-2"><strong>Hedef:</strong> {location.target}</p>
+                                <p><strong>Durum:</strong> {location.status}</p>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div className="mt-4">
+                            <h3 className="text-lg font-semibold mb-4 flex items-center">
+                              <MapPin className="h-5 w-5 mr-2 text-brand-600" />
+                              Territory Verileri
+                            </h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                              {location.territories.map((territory, index) => (
+                                <Card key={index} className="hover:shadow-md transition-shadow duration-200">
+                                  <CardHeader className="pb-2">
+                                    <CardTitle className="text-md">{territory.name}</CardTitle>
+                                  </CardHeader>
+                                  <CardContent>
+                                    <div className="flex items-start space-x-3">
+                                      <FileSpreadsheet className="h-8 w-8 text-green-600 flex-shrink-0" />
+                                      <div>
+                                        <p className="text-sm font-medium">{territory.excelData.title}</p>
+                                        <p className="text-xs text-gray-500 mt-1">{territory.excelData.date} • {territory.excelData.size}</p>
+                                        <Button variant="link" size="sm" className="px-0 mt-1">
+                                          <Download className="h-3 w-3 mr-1" />
+                                          İndir
+                                        </Button>
+                                      </div>
+                                    </div>
+                                  </CardContent>
+                                </Card>
+                              ))}
+                            </div>
+                          </div>
+                        </DialogContent>
+                      </Dialog>
+                    </React.Fragment>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="py-20">
         <div className="container-custom">
@@ -264,7 +679,7 @@ const GoalsResults = () => {
         </div>
       </section>
 
-      {/* New Section: EZD DR'ları */}
+      {/* Original EZD DR'ları Section */}
       <section className="py-20">
         <div className="container-custom">
           <SectionHeader
@@ -346,22 +761,4 @@ const GoalsResults = () => {
           <div className="bg-white p-8 rounded-lg shadow-md border border-gray-100">
             <h3 className="text-2xl font-bold mb-6 text-center font-serif">Yeni Dokümanlara Erişim</h3>
             <p className="text-center text-gray-700 mb-8">
-              Yeni eklenen dokümanlara erişim için lütfen sisteme giriş yapın veya erişim talebinde bulunun. 
-              Dokümanlar periyodik olarak güncellenmekte ve yenileri eklenmektedir.
-            </p>
-            <div className="flex justify-center space-x-4">
-              <Button size="lg">
-                Giriş Yap
-              </Button>
-              <Button size="lg" variant="outline">
-                Erişim Talep Et
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-    </Layout>
-  );
-};
-
-export default GoalsResults;
+              Yeni eklenen dokümanlara
