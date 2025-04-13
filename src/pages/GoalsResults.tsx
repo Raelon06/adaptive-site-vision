@@ -5,12 +5,13 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Download, FileSpreadsheet, FileText, Eye, Target, Bookmark, MapPin, Store, ChevronDown, ChevronUp, Users, Database, Check } from "lucide-react";
+import { Download, FileSpreadsheet, FileText, Eye, Target, Bookmark, MapPin, Store, ChevronDown, ChevronUp, Users, Database, Check, Edit, Save } from "lucide-react";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Input } from "@/components/ui/input";
 
 const documentsList = [
   {
@@ -83,35 +84,35 @@ const specialTargets = [
   {
     id: 1,
     store: "Sapanca Merkez Şef Dükkanı",
-    target: "₺850.000",
+    target: "850.000 krt",
     description: "Hafta sonu satışlarında %15 artış hedefi",
     deadline: "30 Eylül 2024"
   },
   {
     id: 2,
     store: "Serdivan AVM Şef Dükkanı",
-    target: "₺1.250.000",
+    target: "1.250.000 krt",
     description: "Yeni müşteri kazanımında %20 büyüme",
     deadline: "15 Ekim 2024"
   },
   {
     id: 3,
     store: "Erenler Şef Dükkanı",
-    target: "₺720.000",
+    target: "720.000 krt",
     description: "Premium ürün satışlarında %25 artış hedefi",
     deadline: "1 Kasım 2024"
   },
   {
     id: 4,
     store: "Adapazarı Merkez Şef Dükkanı",
-    target: "₺950.000",
+    target: "950.000 krt",
     description: "Müşteri memnuniyeti puanında 4.8/5 hedefi",
     deadline: "20 Ekim 2024"
   },
   {
     id: 5,
     store: "Karasu Sahil Şef Dükkanı",
-    target: "₺650.000",
+    target: "650.000 krt",
     description: "Sezonluk ürün satışlarında %30 artış",
     deadline: "30 Ekim 2024"
   }
@@ -121,7 +122,7 @@ const ezdLocations = [
   {
     id: 1,
     name: "Sapanca",
-    target: "₺420.000",
+    target: "420.000",
     manager: "Olcay Köksal",
     status: "İyi",
     representative: {
@@ -159,7 +160,7 @@ const ezdLocations = [
   {
     id: 2,
     name: "Akyazı",
-    target: "₺380.000",
+    target: "380.000",
     manager: "Anıl Samur",
     status: "Orta",
     representative: {
@@ -189,7 +190,7 @@ const ezdLocations = [
   {
     id: 3,
     name: "Geyve",
-    target: "₺350.000",
+    target: "350.000",
     manager: "Olcay Köksal",
     status: "İyi",
     representative: {
@@ -219,7 +220,7 @@ const ezdLocations = [
   {
     id: 4,
     name: "Pamukova",
-    target: "₺290.000",
+    target: "290.000",
     manager: "Olcay Köksal",
     status: "Geliştirilmeli",
     representative: {
@@ -249,7 +250,7 @@ const ezdLocations = [
   {
     id: 5,
     name: "Serdivan-Üniversite",
-    target: "₺520.000",
+    target: "520.000",
     manager: "Olcay Köksal",
     status: "Çok İyi",
     representative: {
@@ -287,7 +288,7 @@ const ezdLocations = [
   {
     id: 6,
     name: "Camili - Karaman",
-    target: "₺310.000",
+    target: "310.000",
     manager: "Olcay Köksal",
     status: "Orta",
     representative: {
@@ -317,7 +318,7 @@ const ezdLocations = [
   {
     id: 7,
     name: "Karapürçek - Küçücek",
-    target: "₺280.000",
+    target: "280.000",
     manager: "Anıl Samur",
     status: "Geliştirilmeli",
     representative: {
@@ -357,7 +358,10 @@ const GoalsResults = () => {
   const [selectedLocation, setSelectedLocation] = useState<number | null>(null);
   const [openDialogId, setOpenDialogId] = useState<number | null>(null);
   const [locations, setLocations] = useState(ezdLocations);
-  
+  const [editingTargetId, setEditingTargetId] = useState<number | null>(null);
+  const [tempTargetValue, setTempTargetValue] = useState("");
+  const [isAdmin] = useState(true);
+
   const toggleLocation = (locationId: number) => {
     if (selectedLocation === locationId) {
       setSelectedLocation(null);
@@ -383,6 +387,26 @@ const GoalsResults = () => {
   const getStatusColor = (status: string) => {
     const statusOption = statusOptions.find(option => option.value === status);
     return statusOption ? statusOption.color : "";
+  };
+
+  const startEditingTarget = (locationId: number, currentTarget: string) => {
+    setEditingTargetId(locationId);
+    setTempTargetValue(currentTarget);
+  };
+
+  const saveTarget = (locationId: number) => {
+    setLocations(prevLocations => 
+      prevLocations.map(location => 
+        location.id === locationId 
+          ? { ...location, target: tempTargetValue } 
+          : location
+      )
+    );
+    setEditingTargetId(null);
+  };
+
+  const cancelEditingTarget = () => {
+    setEditingTargetId(null);
   };
 
   return (
@@ -429,7 +453,58 @@ const GoalsResults = () => {
                             <ChevronDown className="h-4 w-4 ml-2 text-gray-500" />
                           )}
                         </TableCell>
-                        <TableCell>{location.target}</TableCell>
+                        <TableCell onClick={(e) => e.stopPropagation()}>
+                          {editingTargetId === location.id ? (
+                            <div className="flex items-center">
+                              <Input
+                                className="w-24 mr-2"
+                                value={tempTargetValue}
+                                onChange={(e) => setTempTargetValue(e.target.value)}
+                                onClick={(e) => e.stopPropagation()}
+                                autoFocus
+                              />
+                              <Button 
+                                size="sm" 
+                                variant="outline" 
+                                className="p-1 h-7 mr-1"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  saveTarget(location.id);
+                                }}
+                              >
+                                <Save className="h-4 w-4" />
+                              </Button>
+                              <Button 
+                                size="sm" 
+                                variant="outline" 
+                                className="p-1 h-7"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  cancelEditingTarget();
+                                }}
+                              >
+                                <ChevronUp className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          ) : (
+                            <div className="flex items-center">
+                              <span>{location.target} krt</span>
+                              {isAdmin && (
+                                <Button 
+                                  size="sm" 
+                                  variant="ghost" 
+                                  className="ml-2 p-1 h-7"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    startEditingTarget(location.id, location.target);
+                                  }}
+                                >
+                                  <Edit className="h-3 w-3 text-gray-500" />
+                                </Button>
+                              )}
+                            </div>
+                          )}
+                        </TableCell>
                         <TableCell>{location.manager}</TableCell>
                         <TableCell>
                           <Popover>
@@ -572,7 +647,7 @@ const GoalsResults = () => {
                                     <h4 className="text-xl font-semibold">{location.representative.name}</h4>
                                     <p className="text-gray-600">{location.representative.position}</p>
                                     <div className="flex items-center mt-2">
-                                      <span className="text-sm text-gray-500 mr-3">Hedef: {location.target}</span>
+                                      <span className="text-sm text-gray-500 mr-3">Hedef: {location.target} krt</span>
                                       <span className={`px-2 py-1 text-xs font-medium rounded-full
                                         ${location.status === 'Çok İyi' ? 'bg-green-100 text-green-800' : 
                                           location.status === 'İyi' ? 'bg-blue-100 text-blue-800' : 
@@ -594,7 +669,7 @@ const GoalsResults = () => {
                               <div className="bg-gray-50 p-4 rounded-lg">
                                 <p className="mb-2"><strong>Yönetici:</strong> {location.manager}</p>
                                 <p className="mb-2"><strong>Territory Sayısı:</strong> {location.territories.length}</p>
-                                <p className="mb-2"><strong>Hedef:</strong> {location.target}</p>
+                                <p className="mb-2"><strong>Hedef:</strong> {location.target} krt</p>
                                 <p><strong>Durum:</strong> {location.status}</p>
                               </div>
                             </div>
@@ -747,14 +822,14 @@ const GoalsResults = () => {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {ezdLocations.map((location) => (
+                  {locations.map((location) => (
                     <TableRow key={location.id} className="hover:bg-gray-50">
                       <TableCell className="font-medium">{location.id}</TableCell>
                       <TableCell className="flex items-center">
                         <MapPin className="h-4 w-4 mr-2 text-brand-600" />
                         {location.name}
                       </TableCell>
-                      <TableCell>{location.target}</TableCell>
+                      <TableCell>{location.target} krt</TableCell>
                       <TableCell>{location.manager}</TableCell>
                       <TableCell>
                         <span className={`px-2 py-1 rounded-full text-xs font-medium
