@@ -3,7 +3,9 @@ import Layout from "@/components/layout/Layout";
 import { HeroSection } from "@/components/ui/hero-section";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Button } from "@/components/ui/button";
-import { Download, FileSpreadsheet, FileText, Eye } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Download, FileSpreadsheet, FileText, Eye, Target, Bookmark, MapPin, Store } from "lucide-react";
 
 const documentsList = [
   {
@@ -72,6 +74,98 @@ const documentsList = [
   }
 ];
 
+// Top 5 Chef Store Special Targets data
+const specialTargets = [
+  {
+    id: 1,
+    store: "Sapanca Merkez Şef Dükkanı",
+    target: "₺850.000",
+    description: "Hafta sonu satışlarında %15 artış hedefi",
+    deadline: "30 Eylül 2024"
+  },
+  {
+    id: 2,
+    store: "Serdivan AVM Şef Dükkanı",
+    target: "₺1.250.000",
+    description: "Yeni müşteri kazanımında %20 büyüme",
+    deadline: "15 Ekim 2024"
+  },
+  {
+    id: 3,
+    store: "Erenler Şef Dükkanı",
+    target: "₺720.000",
+    description: "Premium ürün satışlarında %25 artış hedefi",
+    deadline: "1 Kasım 2024"
+  },
+  {
+    id: 4,
+    store: "Adapazarı Merkez Şef Dükkanı",
+    target: "₺950.000",
+    description: "Müşteri memnuniyeti puanında 4.8/5 hedefi",
+    deadline: "20 Ekim 2024"
+  },
+  {
+    id: 5,
+    store: "Karasu Sahil Şef Dükkanı",
+    target: "₺650.000",
+    description: "Sezonluk ürün satışlarında %30 artış",
+    deadline: "30 Ekim 2024"
+  }
+];
+
+// EZD DR locations data
+const ezdLocations = [
+  {
+    id: 1,
+    name: "Sapanca",
+    target: "₺420.000",
+    manager: "Ahmet Yılmaz",
+    status: "İyi"
+  },
+  {
+    id: 2,
+    name: "Akyazı",
+    target: "₺380.000",
+    manager: "Mehmet Kaya",
+    status: "Orta"
+  },
+  {
+    id: 3,
+    name: "Geyve",
+    target: "₺350.000",
+    manager: "Ayşe Demir",
+    status: "İyi"
+  },
+  {
+    id: 4,
+    name: "Pamukova",
+    target: "₺290.000",
+    manager: "Fatma Şahin",
+    status: "Geliştirilmeli"
+  },
+  {
+    id: 5,
+    name: "Serdivan-Üniversite",
+    target: "₺520.000",
+    manager: "Ali Öztürk",
+    status: "Çok İyi"
+  },
+  {
+    id: 6,
+    name: "Camili - Karaman",
+    target: "₺310.000",
+    manager: "Zeynep Kılıç",
+    status: "Orta"
+  },
+  {
+    id: 7,
+    name: "Karapürçek - Küçücek",
+    target: "₺280.000",
+    manager: "Mustafa Yıldız",
+    status: "Geliştirilmeli"
+  }
+];
+
 const GoalsResults = () => {
   return (
     <Layout>
@@ -126,6 +220,94 @@ const GoalsResults = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* New Section: Top 5 Şef Dükkanında Özel Hedefler */}
+      <section className="py-20 bg-gray-50">
+        <div className="container-custom">
+          <SectionHeader
+            title="Top 5 Şef Dükkanında Özel Hedefler"
+            subtitle="Öncelikli mağazalarımız için belirlenen özel satış hedefleri"
+          />
+          
+          <div className="bg-white rounded-lg shadow-md overflow-hidden">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+              {specialTargets.map((target) => (
+                <Card key={target.id} className="hover:shadow-lg transition-shadow duration-300 border-t-4 border-t-brand-500">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-xl flex items-center">
+                      <Store className="h-5 w-5 mr-2 text-brand-600" />
+                      {target.store}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-center">
+                        <span className="font-medium text-gray-600">Hedef:</span>
+                        <span className="text-xl font-bold text-brand-700">{target.target}</span>
+                      </div>
+                      <div>
+                        <p className="text-gray-600 mb-2"><Target className="h-4 w-4 inline mr-2" /> {target.description}</p>
+                        <p className="text-sm text-gray-500 flex items-center">
+                          <Bookmark className="h-4 w-4 mr-1" />
+                          Son Tarih: {target.deadline}
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* New Section: EZD DR'ları */}
+      <section className="py-20">
+        <div className="container-custom">
+          <SectionHeader
+            title="EZD DR'ları"
+            subtitle="Bölgesel EZD DR lokasyonları ve hedef bilgileri"
+          />
+          
+          <div className="bg-white rounded-lg shadow-md overflow-hidden">
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="font-bold">#</TableHead>
+                    <TableHead className="font-bold">Lokasyon</TableHead>
+                    <TableHead className="font-bold">Hedef</TableHead>
+                    <TableHead className="font-bold">Sorumlu Yönetici</TableHead>
+                    <TableHead className="font-bold">Durum</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {ezdLocations.map((location) => (
+                    <TableRow key={location.id} className="hover:bg-gray-50">
+                      <TableCell className="font-medium">{location.id}</TableCell>
+                      <TableCell className="flex items-center">
+                        <MapPin className="h-4 w-4 mr-2 text-brand-600" />
+                        {location.name}
+                      </TableCell>
+                      <TableCell>{location.target}</TableCell>
+                      <TableCell>{location.manager}</TableCell>
+                      <TableCell>
+                        <span className={`px-2 py-1 rounded-full text-xs font-medium
+                          ${location.status === 'Çok İyi' ? 'bg-green-100 text-green-800' : 
+                            location.status === 'İyi' ? 'bg-blue-100 text-blue-800' : 
+                            location.status === 'Orta' ? 'bg-yellow-100 text-yellow-800' : 
+                            'bg-red-100 text-red-800'}`}>
+                          {location.status}
+                        </span>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
           </div>
         </div>
       </section>
