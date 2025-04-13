@@ -79,7 +79,6 @@ const documentsList = [
   }
 ];
 
-// Top 5 Chef Store Special Targets data
 const specialTargets = [
   {
     id: 1,
@@ -118,7 +117,6 @@ const specialTargets = [
   }
 ];
 
-// EZD DR locations data with expanded details and updated managers
 const ezdLocations = [
   {
     id: 1,
@@ -348,7 +346,6 @@ const ezdLocations = [
   }
 ];
 
-// Status options
 const statusOptions = [
   { value: "Çok İyi", color: "bg-green-100 text-green-800" },
   { value: "İyi", color: "bg-blue-100 text-blue-800" },
@@ -396,7 +393,6 @@ const GoalsResults = () => {
         backgroundImage="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
       />
 
-      {/* EZD DR'ları - Interactive Section */}
       <section className="py-20">
         <div className="container-custom">
           <SectionHeader
@@ -511,7 +507,6 @@ const GoalsResults = () => {
                         </TableCell>
                       </TableRow>
                       
-                      {/* Expanded Row for Territories */}
                       {selectedLocation === location.id && (
                         <TableRow>
                           <TableCell colSpan={6} className="p-0 bg-gray-50">
@@ -547,7 +542,6 @@ const GoalsResults = () => {
                         </TableRow>
                       )}
                       
-                      {/* Location Detail Dialog */}
                       <Dialog 
                         open={openDialogId === location.id} 
                         onOpenChange={(open) => {
@@ -694,7 +688,6 @@ const GoalsResults = () => {
         </div>
       </section>
 
-      {/* New Section: Top 5 Şef Dükkanında Özel Hedefler */}
       <section className="py-20 bg-gray-50">
         <div className="container-custom">
           <SectionHeader
@@ -734,7 +727,6 @@ const GoalsResults = () => {
         </div>
       </section>
 
-      {/* Original EZD DR'ları Section */}
       <section className="py-20">
         <div className="container-custom">
           <SectionHeader
@@ -777,3 +769,52 @@ const GoalsResults = () => {
                   ))}
                 </TableBody>
               </Table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-gray-50">
+        <div className="container-custom">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl font-bold mb-6 font-serif">Hedef Belirleme Metodolojimiz</h2>
+              <p className="text-lg text-gray-700 mb-6">
+                PMI olarak, SMART (Specific, Measurable, Achievable, Relevant, Time-bound) hedef belirleme 
+                metodolojisini benimsiyoruz. Bu yaklaşım sayesinde, net, ölçülebilir, ulaşılabilir, 
+                ilgili ve zamana bağlı hedefler belirleyerek, performansımızı sürekli olarak izliyor ve 
+                geliştiriyoruz.
+              </p>
+              <p className="text-lg text-gray-700 mb-6">
+                Hedeflerimizi belirlerken, pazar koşullarını, müşteri beklentilerini ve şirket stratejilerimizi 
+                göz önünde bulundurarak, gerçekçi ve aynı zamanda zorlayıcı hedefler belirliyoruz. 
+                Bu hedefleri düzenli olarak gözden geçirerek, gerektiğinde güncelliyor ve sürekli iyileştirme 
+                yaklaşımıyla çalışıyoruz.
+              </p>
+            </div>
+            <div>
+              <img 
+                src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" 
+                alt="Hedef Belirleme" 
+                className="rounded-lg shadow-xl" 
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20">
+        <div className="container-custom">
+          <div className="bg-white p-8 rounded-lg shadow-md border border-gray-100">
+            <h3 className="text-2xl font-bold mb-6 text-center font-serif">Yeni Dokümanlara Erişim</h3>
+            <p className="text-center text-gray-700 mb-8">
+              Yeni eklenen dokümanlara erişim için lütfen sistem yöneticinize başvurun.
+            </p>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  );
+};
+
+export default GoalsResults;
