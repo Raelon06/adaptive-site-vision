@@ -2,7 +2,7 @@
 import { cn } from "@/lib/utils";
 import { Card, CardContent, CardFooter } from "./card";
 import { Button } from "./button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 import { AspectImage } from "./aspect-image";
 
@@ -14,6 +14,8 @@ interface ContentCardProps {
   className?: string;
   aspectRatio?: number;
   buttonText?: string;
+  date?: string;       // Added date property
+  category?: string;   // Added category property
 }
 
 export function ContentCard({
@@ -23,7 +25,9 @@ export function ContentCard({
   link,
   className,
   aspectRatio = 16/9,
-  buttonText = "Detaylar"
+  buttonText = "Detaylar",
+  date,           // Added date parameter
+  category        // Added category parameter
 }: ContentCardProps) {
   return (
     <Card className={cn("overflow-hidden card-hover", className)}>
@@ -33,8 +37,21 @@ export function ContentCard({
         aspectRatio={aspectRatio}
       />
       <CardContent className="p-6">
+        {/* Display category if provided */}
+        {category && (
+          <span className="text-xs font-medium text-brand-600 bg-brand-50 rounded-full px-2.5 py-0.5 mb-2 inline-block">
+            {category}
+          </span>
+        )}
         <h3 className="font-semibold text-xl mb-2">{title}</h3>
         <p className="text-muted-foreground">{description}</p>
+        {/* Display date if provided */}
+        {date && (
+          <div className="flex items-center text-sm text-muted-foreground mt-3">
+            <Calendar size={14} className="mr-1" />
+            {date}
+          </div>
+        )}
       </CardContent>
       <CardFooter className="p-6 pt-0">
         <Button asChild variant="outline" className="w-full group">
