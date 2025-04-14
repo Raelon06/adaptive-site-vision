@@ -3,28 +3,14 @@ import React, { createContext, useContext, useState, ReactNode, useEffect } from
 import { useNavigate } from 'react-router-dom';
 import { useToast } from "@/hooks/use-toast";
 import { User } from '@/types/user';
-
-interface AuthContextType {
-  user: User | null;
-  isAuthenticated: boolean;
-  isLoading: boolean;
-  login: (email: string, password: string) => Promise<void>;
-  logout: () => void;
-  sendVerificationCode: (email: string) => Promise<boolean>;
-  verifyCode: (email: string, code: string) => Promise<boolean>;
-  createPassword: (email: string, password: string) => Promise<boolean>;
-}
+import { AuthContextType, ACTIVE_USER_KEY, VERIFICATION_CODES } from '@/types/auth';
+import { getStoredUsers, saveUser, generateVerificationCode } from '@/utils/authUtils';
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 interface AuthProviderProps {
   children: ReactNode;
 }
-
-// Mock storage for demo purposes
-const USERS_STORAGE_KEY = 'pmi_users';
-const ACTIVE_USER_KEY = 'pmi_active_user';
-const VERIFICATION_CODES = 'pmi_verification_codes';
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
@@ -45,30 +31,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
     setIsLoading(false);
   }, []);
-
-  const getStoredUsers = (): User[] => {
-    const users = localStorage.getItem(USERS_STORAGE_KEY);
-    if (!users) return [];
-    try {
-      return JSON.parse(users);
-    } catch (error) {
-      console.error("Error parsing stored users:", error);
-      return [];
-    }
-  };
-
-  const saveUser = (userData: User) => {
-    const users = getStoredUsers();
-    const existingUserIndex = users.findIndex(u => u.email === userData.email);
-    
-    if (existingUserIndex >= 0) {
-      users[existingUserIndex] = userData;
-    } else {
-      users.push(userData);
-    }
-    
-    localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(users));
-  };
 
   const login = async (email: string, password: string) => {
     setIsLoading(true);
@@ -119,7 +81,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       // Generate a 6-digit code
-      const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+      const verificationCode = generateVerificationCode();
       
       // Store the code with the email
       const codes = JSON.parse(localStorage.getItem(VERIFICATION_CODES) || '{}');
