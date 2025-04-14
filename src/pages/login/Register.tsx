@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
@@ -11,6 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { useToast } from "@/hooks/use-toast";
 
 const emailSchema = z.object({
   email: z.string().email("Geçerli bir email adresi giriniz"),
@@ -43,7 +43,9 @@ export default function Register() {
   const [currentStep, setCurrentStep] = useState<RegistrationStep>(RegistrationStep.EnterEmail);
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
+  const [lastCodeSentTime, setLastCodeSentTime] = useState(0);
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   const emailForm = useForm<EmailFormValues>({
     resolver: zodResolver(emailSchema),

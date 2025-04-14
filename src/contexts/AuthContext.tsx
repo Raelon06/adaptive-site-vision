@@ -126,11 +126,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       codes[email] = verificationCode;
       localStorage.setItem(VERIFICATION_CODES, JSON.stringify(codes));
       
-      console.log(`Verification code for ${email}: ${verificationCode}`);
+      // In a real application, this would send an email
+      console.log(`💌 Email sent to ${email} with verification code: ${verificationCode}`);
       
       toast({
         title: "Doğrulama kodu gönderildi",
-        description: "Lütfen email adresinize gelen kodu kontrol edin. (Demo amaçlı: Kod konsola yazdırıldı)",
+        description: `${email} adresine doğrulama kodu gönderildi. Lütfen gelen kutunuzu kontrol edin. (Demo amaçlı: Kod konsola yazdırıldı - F12 ile görebilirsiniz)`,
       });
       
       return true;
