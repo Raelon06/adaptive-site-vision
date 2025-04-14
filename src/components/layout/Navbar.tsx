@@ -1,9 +1,10 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, CalendarDays, Map, FileText } from 'lucide-react';
+import { Menu, X, ChevronDown, CalendarDays, Map, FileText, LogOut } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { cn } from '@/lib/utils';
+import { useAuth } from '@/contexts/AuthContext';
 
 const menuItems = [
   { name: 'Ana Sayfa', path: '/' },
@@ -34,6 +35,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const location = useLocation();
+  const { isAuthenticated, logout, user } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,6 +54,10 @@ export default function Navbar() {
   const toggleSubmenu = (name: string) => {
     setOpenSubmenu(openSubmenu === name ? null : name);
   };
+
+  if (!isAuthenticated) {
+    return null;
+  }
 
   return (
     <nav 
@@ -140,16 +146,38 @@ export default function Navbar() {
               )}
             </div>
           ))}
+
+          {/* User options and logout */}
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            onClick={logout}
+            className="ml-4 text-gray-700 hover:text-red-600 hover:bg-red-50"
+          >
+            <LogOut className="h-4 w-4 mr-1" />
+            Çıkış Yap
+          </Button>
         </div>
 
         {/* Mobile Navigation Button */}
-        <button
-          type="button"
-          className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-brand-600 hover:bg-gray-100 focus:outline-none transition-colors duration-200"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+        <div className="md:hidden flex items-center space-x-2">
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            onClick={logout}
+            className="text-gray-700 hover:text-red-600 hover:bg-red-50"
+          >
+            <LogOut className="h-4 w-4" />
+          </Button>
+        
+          <button
+            type="button"
+            className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-brand-600 hover:bg-gray-100 focus:outline-none transition-colors duration-200"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Navigation Menu */}
@@ -160,11 +188,16 @@ export default function Navbar() {
         )}
       >
         <div className="flex items-center justify-between p-4 border-b">
-          <img 
-            src="/lovable-uploads/942c5a63-00ab-421a-89f8-d8a625bca962.png" 
-            alt="KÖBEOĞLU PMI THE REDS KAZANIR" 
-            className="h-10 w-auto"
-          />
+          <div className="flex items-center space-x-2">
+            <img 
+              src="/lovable-uploads/942c5a63-00ab-421a-89f8-d8a625bca962.png" 
+              alt="KÖBEOĞLU PMI THE REDS KAZANIR" 
+              className="h-10 w-auto"
+            />
+            {user && (
+              <span className="text-sm font-medium text-gray-700">{user.name}</span>
+            )}
+          </div>
           <button
             type="button"
             className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-brand-600 hover:bg-gray-100 focus:outline-none transition-colors duration-200"
@@ -217,6 +250,18 @@ export default function Navbar() {
               )}
             </div>
           ))}
+          
+          <div className="pt-4 mt-4 border-t">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={logout}
+              className="w-full justify-start text-red-600 hover:bg-red-50 hover:text-red-700"
+            >
+              <LogOut className="h-4 w-4 mr-2" />
+              Çıkış Yap
+            </Button>
+          </div>
         </div>
       </div>
     </nav>
