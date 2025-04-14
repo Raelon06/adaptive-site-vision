@@ -1,6 +1,7 @@
 
 import { cn } from '@/lib/utils';
 import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
+import { AspectImage } from './aspect-image';
 
 interface TeamCardProps {
   name: string;
@@ -29,13 +30,12 @@ export function TeamCard({
       "bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl",
       className
     )}>
-      <div className="aspect-[3/4] relative overflow-hidden">
-        <img 
-          src={image} 
-          alt={name} 
-          className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105" 
-        />
-      </div>
+      <AspectImage 
+        src={image}
+        alt={name}
+        aspectRatio={3/4}
+        className="w-full"
+      />
       <div className="p-6">
         <h3 className="text-xl font-semibold mb-1">{name}</h3>
         <p className="text-brand-600 mb-3">{title}</p>
@@ -45,14 +45,14 @@ export function TeamCard({
         
         {socials && (
           <div className="flex space-x-3 mt-3">
-            {socials.facebook && (
+            {socials.linkedin && (
               <a 
-                href={socials.facebook} 
+                href={socials.linkedin} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-500 hover:text-brand-600 transition-colors"
               >
-                <Facebook size={18} />
+                <Linkedin size={18} />
               </a>
             )}
             {socials.twitter && (
@@ -75,14 +75,14 @@ export function TeamCard({
                 <Instagram size={18} />
               </a>
             )}
-            {socials.linkedin && (
+            {socials.facebook && (
               <a 
-                href={socials.linkedin} 
+                href={socials.facebook} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-500 hover:text-brand-600 transition-colors"
               >
-                <Linkedin size={18} />
+                <Facebook size={18} />
               </a>
             )}
           </div>

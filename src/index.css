@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -93,15 +93,15 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-opensans;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif;
+    @apply font-montserrat;
   }
 
   .hero-gradient {
-    background: linear-gradient(to right, rgba(14, 165, 233, 0.2), rgba(3, 105, 161, 0.7));
+    background: linear-gradient(to right, rgba(74, 111, 165, 0.2), rgba(74, 111, 165, 0.7));
   }
 
   .section-padding {
@@ -117,7 +117,7 @@
   }
 
   .section-title {
-    @apply text-3xl md:text-4xl font-bold mb-6 text-center font-serif;
+    @apply text-3xl md:text-4xl font-bold mb-6 text-center font-montserrat;
   }
 
   .section-subtitle {
@@ -127,7 +127,7 @@
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -136,7 +136,7 @@
 
 ::-webkit-scrollbar-thumb {
   background: hsl(var(--muted));
-  border-radius: 5px;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -146,4 +146,44 @@
 /* Smooth scroll behavior */
 html {
   scroll-behavior: smooth;
+}
+
+/* Interactive link underline animation */
+.hover-underline {
+  @apply relative inline-block;
+}
+
+.hover-underline::after {
+  content: '';
+  @apply absolute w-full h-0.5 bg-primary scale-x-0 left-0 bottom-0 origin-bottom-right transition-transform duration-300;
+}
+
+.hover-underline:hover::after {
+  @apply scale-x-100 origin-bottom-left;
+}
+
+/* Micro-interactions */
+.hover-lift {
+  @apply transition-transform duration-300 hover:-translate-y-1;
+}
+
+.hover-scale {
+  @apply transition-transform duration-300 hover:scale-105;
+}
+
+.hover-rotate {
+  @apply transition-transform duration-500 hover:rotate-3;
+}
+
+/* Image frame */
+.image-frame {
+  @apply relative overflow-hidden rounded-md bg-gray-100;
+}
+
+.image-frame img {
+  @apply w-full h-full object-cover transition-transform duration-500;
+}
+
+.image-frame:hover img {
+  @apply scale-105;
 }
