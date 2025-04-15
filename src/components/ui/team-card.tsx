@@ -1,7 +1,6 @@
 
 import { cn } from '@/lib/utils';
 import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
-import { AspectImage } from './aspect-image';
 
 interface TeamCardProps {
   name: string;
@@ -15,6 +14,7 @@ interface TeamCardProps {
     linkedin?: string;
   };
   className?: string;
+  aspectRatio?: string;
 }
 
 export function TeamCard({
@@ -23,19 +23,25 @@ export function TeamCard({
   image,
   description,
   socials,
-  className
+  className,
+  aspectRatio = "3/4"
 }: TeamCardProps) {
   return (
     <div className={cn(
-      "bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl",
+      "bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1",
       className
     )}>
-      <AspectImage 
-        src={image}
-        alt={name}
-        aspectRatio={3/4}
-        className="w-full"
-      />
+      <div 
+        className="team-image" 
+        style={{ "--aspect-ratio": aspectRatio } as React.CSSProperties}
+      >
+        <img 
+          src={image}
+          alt={name}
+          className="w-full h-full object-cover"
+        />
+      </div>
+      
       <div className="p-6">
         <h3 className="text-xl font-semibold mb-1">{name}</h3>
         <p className="text-brand-600 mb-3">{title}</p>

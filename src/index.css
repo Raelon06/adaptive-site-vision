@@ -117,7 +117,7 @@
   }
 
   .section-title {
-    @apply text-3xl md:text-4xl font-bold mb-6 text-center font-montserrat;
+    @apply text-3xl md:text-4xl lg:text-6xl font-bold mb-6 text-center font-montserrat;
   }
 
   .section-subtitle {
@@ -175,15 +175,47 @@ html {
   @apply transition-transform duration-500 hover:rotate-3;
 }
 
-/* Image frame */
+/* Image frame - ensures images fit within their containers */
 .image-frame {
-  @apply relative overflow-hidden rounded-md bg-gray-100;
+  @apply relative overflow-hidden rounded-md;
+  aspect-ratio: var(--aspect-ratio, 16/9);
 }
 
 .image-frame img {
-  @apply w-full h-full object-cover transition-transform duration-500;
+  @apply w-full h-full object-cover absolute inset-0;
 }
 
-.image-frame:hover img {
+/* Image card - keeps consistent sizing */
+.team-image {
+  @apply relative overflow-hidden;
+  aspect-ratio: var(--aspect-ratio, 1/1);
+}
+
+.team-image img {
+  @apply w-full h-full object-cover absolute inset-0 transition-transform duration-500;
+}
+
+.team-image:hover img {
   @apply scale-105;
+}
+
+/* Page transitions */
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.page-exit {
+  opacity: 1;
+}
+
+.page-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
 }
