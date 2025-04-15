@@ -4,17 +4,16 @@ import { useAuth } from "@/contexts/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { LogIn, Mail, Lock, ArrowRight } from "lucide-react";
+import { LogIn, User as UserIcon, Lock, ArrowRight } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 
 const loginSchema = z.object({
-  email: z.string().email("Geçerli bir email adresi giriniz"),
-  password: z.string().min(6, "Şifre en az 6 karakter olmalıdır"),
+  username: z.string().min(1, "Kullanıcı adı giriniz"),
+  password: z.string().min(1, "Şifre giriniz"),
 });
 
 type LoginFormValues = z.infer<typeof loginSchema>;
@@ -27,7 +26,7 @@ export default function Login() {
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      email: "",
+      username: "",
       password: "",
     },
   });
@@ -35,7 +34,7 @@ export default function Login() {
   const onSubmit = async (data: LoginFormValues) => {
     try {
       setError("");
-      await login(data.email, data.password);
+      await login(data.username, data.password);
       navigate("/");
     } catch (err) {
       if (err instanceof Error) {
@@ -65,7 +64,7 @@ export default function Login() {
           <CardHeader>
             <CardTitle className="text-xl">Giriş Yap</CardTitle>
             <CardDescription>
-              Email ve şifrenizle giriş yapın
+              Kullanıcı adı ve şifrenizle giriş yapın
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -73,15 +72,15 @@ export default function Login() {
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                 <FormField
                   control={form.control}
-                  name="email"
+                  name="username"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel>Kullanıcı Adı</FormLabel>
                       <FormControl>
                         <div className="relative">
-                          <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                          <UserIcon className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                           <Input 
-                            placeholder="ornek@mail.com" 
+                            placeholder="Kullanıcı adınız" 
                             className="pl-10" 
                             {...field} 
                             disabled={isLoading}
@@ -131,12 +130,11 @@ export default function Login() {
               </form>
             </Form>
           </CardContent>
-          <CardFooter className="flex flex-col space-y-2">
-            <div className="text-sm text-center w-full">
-              Hesabınız yok mu?{" "}
-              <Link to="/register" className="text-brand-600 hover:text-brand-500 font-medium">
-                Kaydolun
-              </Link>
+          <CardFooter className="flex justify-center">
+            <div className="text-sm text-center">
+              <p className="text-gray-600">
+                Şifre: <span className="font-medium">Sakarya54</span>
+              </p>
             </div>
           </CardFooter>
         </Card>

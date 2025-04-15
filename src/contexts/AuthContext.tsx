@@ -32,21 +32,31 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setIsLoading(false);
   }, []);
 
-  const login = async (email: string, password: string) => {
+  const login = async (username: string, password: string) => {
     setIsLoading(true);
     try {
       // Simulate API call delay
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      const users = getStoredUsers();
-      const user = users.find(u => u.email === email && u.password === password);
-      
-      if (!user) {
-        throw new Error("Geçersiz email veya şifre");
+      // İstenen login mantığı: Kullanıcı adı ne olursa olsun, şifre Sakarya54 olmalı
+      if (password !== "Sakarya54") {
+        throw new Error("Geçersiz şifre");
       }
       
-      setUser(user);
-      localStorage.setItem(ACTIVE_USER_KEY, JSON.stringify(user));
+      // Giriş başarılı olduğunda kullanıcı oluştur
+      const userData: User = {
+        id: Date.now().toString(),
+        email: `${username}@example.com`, // Email formatı için dummy email
+        password: password,
+        name: username,
+        role: 'user'
+      };
+      
+      // Kullanıcıyı kaydet ve oturumu aç
+      saveUser(userData);
+      setUser(userData);
+      localStorage.setItem(ACTIVE_USER_KEY, JSON.stringify(userData));
+      
       toast({
         title: "Giriş başarılı",
         description: "Hoş geldiniz!",
