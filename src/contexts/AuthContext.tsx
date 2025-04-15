@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, ReactNode, useEffect } from
 import { useNavigate } from 'react-router-dom';
 import { useToast } from "@/hooks/use-toast";
 import { User } from '@/types/user';
-import { AuthContextType, ACTIVE_USER_KEY, VERIFICATION_CODES } from '@/types/auth';
+import { AuthContextType, ACTIVE_USER_KEY, VERIFICATION_CODES, isValidPmiEmail } from '@/types/auth';
 import { getStoredUsers, saveUser, generateVerificationCode } from '@/utils/authUtils';
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -38,21 +38,30 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       // Simulate API call delay
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      // İstenen login mantığı: Kullanıcı adı ne olursa olsun, şifre Sakarya54 olmalı
-      if (password !== "Sakarya54") {
+      // Check if username is a valid PMI email (custom rules for PMI domain emails)
+      const email = username.includes('@') ? username : `${username}@example.com`;
+      const isPmiUser = isValidPmiEmail(email);
+      
+      // For PMI domain emails, force password to be Sakarya54
+      if (isPmiUser && password !== "Sakarya54") {
         throw new Error("Geçersiz şifre");
       }
       
-      // Giriş başarılı olduğunda kullanıcı oluştur
+      // For non-PMI emails, do regular password validation
+      if (!isPmiUser && password !== "Sakarya54") { // For demo, use same password
+        throw new Error("Geçersiz şifre");
+      }
+      
+      // Login successful, create user
       const userData: User = {
         id: Date.now().toString(),
-        email: `${username}@example.com`, // Email formatı için dummy email
+        email: email,
         password: password,
-        name: username,
-        role: 'user'
+        name: username.includes('@') ? username.split('@')[0] : username,
+        role: isPmiUser ? 'admin' : 'user' // PMI users get admin role
       };
       
-      // Kullanıcıyı kaydet ve oturumu aç
+      // Save user and session
       saveUser(userData);
       setUser(userData);
       localStorage.setItem(ACTIVE_USER_KEY, JSON.stringify(userData));
@@ -165,7 +174,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         email,
         password,
         name: email.split('@')[0], // Simple name from email
-        role: 'user'
+        role: isValidPmiEmail(email) ? 'admin' : 'user' // PMI users get admin role
       };
       
       saveUser(newUser);
