@@ -1,6 +1,7 @@
 
 import { cn } from '@/lib/utils';
 import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
+import { AspectImage } from './aspect-image';
 
 interface TeamCardProps {
   name: string;
@@ -26,21 +27,24 @@ export function TeamCard({
   className,
   aspectRatio = "3/4"
 }: TeamCardProps) {
+  // Convert string ratio like "3/4" to number like 0.75
+  const ratioNumber = (): number => {
+    if (!aspectRatio.includes('/')) return 3/4;
+    const [numerator, denominator] = aspectRatio.split('/').map(Number);
+    return numerator / denominator;
+  };
+
   return (
     <div className={cn(
       "bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1",
       className
     )}>
-      <div 
-        className="team-image" 
-        style={{ "--aspect-ratio": aspectRatio } as React.CSSProperties}
-      >
-        <img 
-          src={image}
-          alt={name}
-          className="w-full h-full object-cover"
-        />
-      </div>
+      <AspectImage 
+        src={image}
+        alt={name}
+        aspectRatio={ratioNumber()}
+        objectFit="cover"
+      />
       
       <div className="p-6">
         <h3 className="text-xl font-semibold mb-1">{name}</h3>

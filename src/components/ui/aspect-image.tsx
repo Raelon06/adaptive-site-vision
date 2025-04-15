@@ -35,13 +35,15 @@ export function AspectImage({
       <img
         src={imgSrc}
         alt={alt}
-        className={cn("h-full w-full transition-all duration-300", 
+        className={cn(
+          "h-full w-full transition-all duration-300", 
           objectFit === "cover" ? "object-cover" : 
           objectFit === "contain" ? "object-contain" :
           objectFit === "fill" ? "object-fill" :
           objectFit === "none" ? "object-none" : "object-scale-down"
         )}
         onError={handleError}
+        loading="lazy"
       />
     </AspectRatio>
   );

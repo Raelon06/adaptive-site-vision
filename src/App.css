@@ -1,3 +1,4 @@
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -39,4 +40,23 @@
 
 .read-the-docs {
   color: #888;
+}
+
+/* Responsive image handling */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Image container to maintain consistent sizing */
+.image-container {
+  overflow: hidden;
+  position: relative;
+}
+
+/* Force aspect ratio preservation */
+.image-container img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
