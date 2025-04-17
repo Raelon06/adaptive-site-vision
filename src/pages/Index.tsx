@@ -32,15 +32,6 @@ const features = [
 
 const teamMembers = [
   {
-    name: "KEREM KARAPÜRÇEK",
-    title: "Satış Temsilcisi",
-    image: "/lovable-uploads/9b8b9cde-7c72-4908-8c8d-3b7982ed5587.png",
-    description: "Satış stratejilerinin geliştirilmesi ve uygulanmasından sorumludur.",
-    socials: {
-      linkedin: "#"
-    }
-  },
-  {
     name: "Olcay Köksal",
     title: "SATIŞ ŞEFİ",
     image: "/lovable-uploads/41d6d981-92f9-446f-9767-229ca9a7aeb1.png",
@@ -53,7 +44,16 @@ const teamMembers = [
     name: "Anıl Samur",
     title: "Satış Şefi",
     image: "/lovable-uploads/076a5834-43c1-497c-8b8f-ba97de66a0da.png",
-    description: "Müşteri ilişkileri ve satış operasyonlarının yönetiminden sorumlu.",
+    description: "Müşteri ilişkileri ve satış operasyonlarının yönetiminden sorumludur.",
+    socials: {
+      linkedin: "#"
+    }
+  },
+  {
+    name: "KEREM KARAPÜRÇEK",
+    title: "Satış Temsilcisi",
+    image: "/lovable-uploads/9b8b9cde-7c72-4908-8c8d-3b7982ed5587.png",
+    description: "Satış stratejilerinin geliştirilmesi ve uygulanmasından sorumludur.",
     socials: {
       linkedin: "#"
     }
@@ -79,7 +79,7 @@ const teamMembers = [
   {
     name: "Cenk Çolak",
     title: "Ezd Merchendiser",
-    image: "/lovable-uploads/53a20f65-54c2-4350-b9fb-a889e4e65767.png", // I assume this is the 6th image you uploaded
+    image: "/lovable-uploads/53a20f65-54c2-4350-b9fb-a889e4e65767.png",
     description: "Müşteri ilişkileri ve satış operasyonlarının yönetiminden sorumludur.",
     socials: {
       linkedin: "#"
@@ -105,7 +105,6 @@ const Index = () => {
         </div>
       </HeroSection>
 
-      {/* Team Section */}
       <section className="py-20 bg-gray-50">
         <div className="container-custom">
           <SectionHeader
@@ -128,7 +127,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Features Section */}
       <section className="py-20">
         <div className="container-custom">
           <SectionHeader
@@ -153,7 +151,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* 2025 Vision Section */}
       <section className="py-20">
         <div className="container-custom">
           <SectionHeader
@@ -193,7 +190,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Call To Action */}
       <section className="py-20 bg-brand-700 text-white">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
