@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { HeroSection } from "@/components/ui/hero-section";
 import { SectionHeader } from "@/components/ui/section-header";
@@ -92,7 +93,7 @@ const Index = () => {
     <Layout>
       <HeroSection
         title="Sakarya Güney Batıya Hoş Geldiniz"
-        subtitle="SGB olarak, bölgemizdeki tüm müşterilerimize en kaliteli hizmeti sunmak için buradayız. Profesyonel ekibimiz ve müşteri odaklı yaklaşımımızla her zaman yanınızdayız."
+        subtitle="SGB olarak, bölgemizdeki tüm müşterilerimize en kaliteli hizmeti sunmak için buradayız. Profesyonel ekibimizle her zaman yanınızdayız."
         backgroundImage="/lovable-uploads/26a7e7a5-f7f8-44c4-b0eb-85d448ccf439.png"
       >
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
