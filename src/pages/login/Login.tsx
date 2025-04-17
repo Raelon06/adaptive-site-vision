@@ -1,9 +1,27 @@
 
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
+import { useState } from "react";
 
 export default function Login() {
   const navigate = useNavigate();
+  const { login } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleAutoLogin = async () => {
+    setIsLoading(true);
+    try {
+      // Automatic login with default credentials
+      await login("admin", "Sakarya54");
+      navigate('/');
+    } catch (error) {
+      console.error("Login failed:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
@@ -24,13 +42,18 @@ export default function Login() {
           <CardHeader className="bg-gradient-to-r from-brand-700 to-brand-800 text-white rounded-t-lg">
             <CardTitle className="text-xl">Giriş Yap</CardTitle>
             <CardDescription className="text-gray-100">
-              Giriş işlemi yönetici tarafından kaldırıldı
+              Sisteme giriş yapmak için butona tıklayın
             </CardDescription>
           </CardHeader>
           <CardContent className="pt-6">
             <div className="text-center py-8">
-              <p className="text-gray-600 mb-4">Kullanıcı girişi şu anda devre dışı bırakılmıştır.</p>
-              <p className="text-gray-600">Lütfen sistem yöneticisi ile iletişime geçin.</p>
+              <Button 
+                onClick={handleAutoLogin} 
+                className="w-full bg-brand-600 hover:bg-brand-700 text-white"
+                disabled={isLoading}
+              >
+                {isLoading ? "Giriş yapılıyor..." : "Giriş Yap"}
+              </Button>
             </div>
           </CardContent>
         </Card>
