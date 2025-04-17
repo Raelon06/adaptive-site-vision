@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { HeroSection } from "@/components/ui/hero-section";
 import { SectionHeader } from "@/components/ui/section-header";
@@ -6,28 +5,76 @@ import { ContentCard } from "@/components/ui/content-card";
 import { TeamCard } from "@/components/ui/team-card";
 import Layout from "@/components/layout/Layout";
 import { Link } from "react-router-dom";
-import { CheckCircle, ArrowRight, BookOpen, Brain, Target, Users } from "lucide-react";
+import { CheckCircle, ArrowRight, Users, Target, Brain, Trophy } from "lucide-react";
 
 const features = [
   {
     icon: <Users className="h-8 w-8 text-brand-600" />,
-    title: "Profesyonel Ekip",
-    description: "Deneyimli ve uzman ekibimizle her zaman en iyi hizmeti sunuyoruz."
+    title: "Ekip Olma",
+    description: "Güçlü ekip ruhuyla birlikte başarıya ulaşıyoruz."
   },
   {
     icon: <Target className="h-8 w-8 text-brand-600" />,
-    title: "Hedef Odaklı",
-    description: "Net hedeflerle çalışarak maksimum verimliliği sağlıyoruz."
-  },
-  {
-    icon: <BookOpen className="h-8 w-8 text-brand-600" />,
-    title: "Sürekli Eğitim",
-    description: "Sürekli eğitimle kendimizi geliştiriyor ve güncel kalıyoruz."
+    title: "Odaklı Hedef Takip ve Gelişim",
+    description: "Hedeflerimizi net belirleyip, sürekli takip ve gelişimle ileriyoruz."
   },
   {
     icon: <Brain className="h-8 w-8 text-brand-600" />,
-    title: "Yapay Zeka",
-    description: "En son teknolojileri kullanarak inovatif çözümler sunuyoruz."
+    title: "Sürekli Eğitim",
+    description: "Ekibimizin gelişimi için sürekli eğitim ve öğrenme fırsatları sunuyoruz."
+  },
+  {
+    icon: <Trophy className="h-8 w-8 text-brand-600" />,
+    title: "Başarı Odaklı",
+    description: "Her projede en yüksek başarıyı hedefleyerek çalışıyoruz."
+  }
+];
+
+const teamMembers = [
+  {
+    name: "KEREM KARAPÜRÇEK",
+    title: "Satış Direktörü",
+    image: "/lovable-uploads/9b8b9cde-7c72-4908-8c8d-3b7982ed5587.png",
+    description: "Bölge satış stratejilerinin geliştirilmesi ve uygulanmasından sorumlu.",
+    socials: {
+      linkedin: "#"
+    }
+  },
+  {
+    name: "Olcay Köksal",
+    title: "SATIŞ ŞEFİ",
+    image: "/lovable-uploads/41d6d981-92f9-446f-9767-229ca9a7aeb1.png",
+    description: "Satış ekibinin koordinasyonu ve performans yönetiminden sorumlu.",
+    socials: {
+      linkedin: "#"
+    }
+  },
+  {
+    name: "Anıl Samur",
+    title: "Satış Şefi",
+    image: "/lovable-uploads/076a5834-43c1-497c-8b8f-ba97de66a0da.png",
+    description: "Müşteri ilişkileri ve satış operasyonlarının yönetiminden sorumlu.",
+    socials: {
+      linkedin: "#"
+    }
+  },
+  {
+    name: "Onur Enginyol",
+    title: "Satış Şefi",
+    image: "/lovable-uploads/a1965ce6-f319-458b-a4df-291fe5c7ea57.png",
+    description: "Bölge satış hedeflerinin gerçekleştirilmesinden sorumlu.",
+    socials: {
+      linkedin: "#"
+    }
+  },
+  {
+    name: "Alican Pool",
+    title: "Satış Temsilcisi",
+    image: "/lovable-uploads/4f391e33-32d7-47ec-a906-4d2c97e7406e.png",
+    description: "Müşteri portföyü yönetimi ve yeni iş geliştirmeden sorumlu.",
+    socials: {
+      linkedin: "#"
+    }
   }
 ];
 
@@ -35,9 +82,9 @@ const Index = () => {
   return (
     <Layout>
       <HeroSection
-        title="PMI'a Hoş Geldiniz"
-        subtitle="Sektörün lider firması olarak, profesyonel hizmetlerimizle yanınızdayız."
-        backgroundImage="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
+        title="Sakarya Güney Batıya Hoş Geldiniz"
+        subtitle="SGB olarak, bölgemizdeki tüm müşterilerimize en kaliteli hizmeti sunmak için buradayız. Profesyonel ekibimiz ve müşteri odaklı yaklaşımımızla her zaman yanınızdayız."
+        backgroundImage="/lovable-uploads/26a7e7a5-f7f8-44c4-b0eb-85d448ccf439.png"
       >
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button asChild size="lg" className="bg-white text-brand-700 hover:bg-gray-100">
@@ -49,12 +96,35 @@ const Index = () => {
         </div>
       </HeroSection>
 
-      {/* Features Section */}
+      {/* Team Section */}
       <section className="py-20 bg-gray-50">
         <div className="container-custom">
           <SectionHeader
-            title="Neden Biz?"
-            subtitle="PMI olarak, en yüksek kalitede hizmet sunmak için çalışıyoruz."
+            title="Ekibimizle Tanışın"
+            subtitle="Profesyonel ekibimiz, alanında uzman kişilerden oluşmaktadır"
+          />
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {teamMembers.map((member, index) => (
+              <TeamCard
+                key={index}
+                name={member.name}
+                title={member.title}
+                image={member.image}
+                description={member.description}
+                socials={member.socials}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-20">
+        <div className="container-custom">
+          <SectionHeader
+            title="2025 Hedeflerimiz"
+            subtitle="Sakarya Güney Batı Bölgesi olarak, geleceğe yönelik hedeflerimiz"
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -74,7 +144,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* 2025 Preview Section */}
+      {/* 2025 Vision Section */}
       <section className="py-20">
         <div className="container-custom">
           <SectionHeader
@@ -107,60 +177,6 @@ const Index = () => {
             <Button asChild size="lg">
               <Link to="/2025" className="inline-flex items-center">
                 Tüm 2025 Planlarımızı Görün
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Team Preview Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container-custom">
-          <SectionHeader
-            title="Ekibimizle Tanışın"
-            subtitle="Profesyonel ekibimiz, alanında uzman kişilerden oluşmaktadır"
-          />
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <TeamCard
-              name="Ahmet Yılmaz"
-              title="Satış Direktörü"
-              image="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
-              socials={{
-                linkedin: "#"
-              }}
-            />
-            <TeamCard
-              name="Ayşe Kaya"
-              title="Bölge Müdürü"
-              image="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=776&q=80"
-              socials={{
-                linkedin: "#"
-              }}
-            />
-            <TeamCard
-              name="Mehmet Demir"
-              title="Satış Temsilcisi"
-              image="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=768&q=80"
-              socials={{
-                linkedin: "#"
-              }}
-            />
-            <TeamCard
-              name="Zeynep Aydın"
-              title="Satış Temsilcisi"
-              image="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1661&q=80"
-              socials={{
-                linkedin: "#"
-              }}
-            />
-          </div>
-
-          <div className="text-center mt-12">
-            <Button asChild size="lg">
-              <Link to="/team">
-                Tüm Ekibi Görüntüle
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
