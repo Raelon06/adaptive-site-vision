@@ -33,9 +33,9 @@ const features = [
 const teamMembers = [
   {
     name: "KEREM KARAPÜRÇEK",
-    title: "Satış Direktörü",
+    title: "Satış Temsilcisi",
     image: "/lovable-uploads/9b8b9cde-7c72-4908-8c8d-3b7982ed5587.png",
-    description: "Bölge satış stratejilerinin geliştirilmesi ve uygulanmasından sorumlu.",
+    description: "Satış stratejilerinin geliştirilmesi ve uygulanmasından sorumludur.",
     socials: {
       linkedin: "#"
     }
@@ -44,7 +44,7 @@ const teamMembers = [
     name: "Olcay Köksal",
     title: "SATIŞ ŞEFİ",
     image: "/lovable-uploads/41d6d981-92f9-446f-9767-229ca9a7aeb1.png",
-    description: "Satış ekibinin koordinasyonu ve performans yönetiminden sorumlu.",
+    description: "Satış ekibinin koordinasyonu ve performans yönetiminden sorumludur.",
     socials: {
       linkedin: "#"
     }
@@ -60,9 +60,9 @@ const teamMembers = [
   },
   {
     name: "Onur Enginyol",
-    title: "Satış Şefi",
+    title: "Ezd Merchendiser",
     image: "/lovable-uploads/a1965ce6-f319-458b-a4df-291fe5c7ea57.png",
-    description: "Bölge satış hedeflerinin gerçekleştirilmesinden sorumlu.",
+    description: "Müşteri portföyü yönetimi ve yeni iş geliştirme sorumlusudur.",
     socials: {
       linkedin: "#"
     }
@@ -72,6 +72,15 @@ const teamMembers = [
     title: "Satış Temsilcisi",
     image: "/lovable-uploads/4f391e33-32d7-47ec-a906-4d2c97e7406e.png",
     description: "Müşteri portföyü yönetimi ve yeni iş geliştirmeden sorumlu.",
+    socials: {
+      linkedin: "#"
+    }
+  },
+  {
+    name: "Cenk Çolak",
+    title: "Ezd Merchendiser",
+    image: "/lovable-uploads/53a20f65-54c2-4350-b9fb-a889e4e65767.png", // I assume this is the 6th image you uploaded
+    description: "Müşteri ilişkileri ve satış operasyonlarının yönetiminden sorumludur.",
     socials: {
       linkedin: "#"
     }
@@ -100,8 +109,8 @@ const Index = () => {
       <section className="py-20 bg-gray-50">
         <div className="container-custom">
           <SectionHeader
-            title="Ekibimizle Tanışın"
-            subtitle="Profesyonel ekibimiz, alanında uzman kişilerden oluşmaktadır"
+            title="2025 Vizyonlarımız"
+            subtitle="Alanında uzman, dinamik ve başarıya odaklı ekibimizle geleceğe yürüyoruz"
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
