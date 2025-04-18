@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { AlertCircle } from "lucide-react";
 
 // Sakarya coordinates
-const SAKARYA_CENTER = [30.403333, 40.7539];
+const SAKARYA_CENTER: [number, number] = [30.403333, 40.7539];
 
 const SakaryaMap = () => {
   const mapContainer = useRef<HTMLDivElement>(null);
