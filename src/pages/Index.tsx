@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { HeroSection } from "@/components/ui/hero-section";
 import { SectionHeader } from "@/components/ui/section-header";
@@ -7,6 +6,7 @@ import { TeamCard } from "@/components/ui/team-card";
 import Layout from "@/components/layout/Layout";
 import { Link } from "react-router-dom";
 import { CheckCircle, ArrowRight, Users, Target, Brain, Trophy } from "lucide-react";
+import SakaryaMap from '@/components/maps/SakaryaMap';
 
 const features = [
   {
@@ -194,6 +194,16 @@ const Index = () => {
               </Link>
             </Button>
           </div>
+        </div>
+      </section>
+
+      <section className="py-20">
+        <div className="container-custom">
+          <SectionHeader
+            title="Sakarya Bölge Haritamız"
+            subtitle="Modern ve interaktif haritamız ile bölgemizi keşfedin"
+          />
+          <SakaryaMap />
         </div>
       </section>
 
