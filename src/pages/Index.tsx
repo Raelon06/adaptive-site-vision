@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { HeroSection } from "@/components/ui/hero-section";
 import { SectionHeader } from "@/components/ui/section-header";
@@ -109,8 +110,9 @@ const Index = () => {
       <section className="py-20 bg-gray-50">
         <div className="container-custom">
           <SectionHeader
-            title="2025 Vizyonlarımız"
-            subtitle="Alanında uzman, dinamik ve başarıya odaklı ekibimizle geleceğe yürüyoruz"
+            title="2025 Sakarya Güney Batı Ekibi"
+            subtitle="Modern, dinamik ve başarıya odaklı profesyonellerimizle geleceği şekillendiriyoruz"
+            className="text-center"
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
