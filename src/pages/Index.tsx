@@ -94,7 +94,7 @@ const Index = () => {
       <HeroSection
         title="Sakarya Güney Batıya Hoş Geldiniz"
         subtitle="SGB olarak, bölgemizdeki tüm müşterilerimize en kaliteli hizmeti sunmak için buradayız. Profesyonel ekibimizle her zaman yanınızdayız."
-        backgroundImage="/lovable-uploads/26a7e7a5-f7f8-44c4-b0eb-85d448ccf439.png"
+        backgroundImage="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
       >
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button asChild size="lg" className="bg-white text-brand-700 hover:bg-gray-100">
@@ -145,7 +145,13 @@ const Index = () => {
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <p className="text-gray-600 mb-4">{feature.description}</p>
+                <Button variant="link" asChild className="text-brand-600 p-0 hover:text-brand-700">
+                  <Link to="/2025" className="inline-flex items-center">
+                    Detaylar
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
               </div>
             ))}
           </div>
