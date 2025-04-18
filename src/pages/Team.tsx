@@ -1,77 +1,61 @@
-
 import Layout from "@/components/layout/Layout";
 import { HeroSection } from "@/components/ui/hero-section";
 import { TeamCard } from "@/components/ui/team-card";
 import { SectionHeader } from "@/components/ui/section-header";
 
-// Team members data
 const teamMembers = [
   {
-    name: "Ahmet Yılmaz",
-    title: "Satış Direktörü",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-    description: "15 yıllık satış ve pazarlama deneyimi ile ekibimize liderlik etmektedir.",
-    socials: {
-      linkedin: "#",
-      twitter: "#"
-    }
-  },
-  {
-    name: "Ayşe Kaya",
-    title: "Bölge Müdürü",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=776&q=80",
-    description: "İstanbul bölgesi operasyonlarından sorumlu, 10 yıllık deneyimli bir yönetici.",
-    socials: {
-      linkedin: "#",
-      instagram: "#"
-    }
-  },
-  {
-    name: "Mehmet Demir",
-    title: "Satış Temsilcisi",
-    image: "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=768&q=80",
-    description: "Anadolu bölgesi müşterilerinden sorumlu, 5 yıllık sektör deneyimine sahip.",
+    name: "Olcay Köksal",
+    title: "SATIŞ ŞEFİ",
+    image: "/lovable-uploads/41d6d981-92f9-446f-9767-229ca9a7aeb1.png",
+    description: "Satış ekibinin koordinasyonu ve performans yönetiminden sorumludur.",
     socials: {
       linkedin: "#"
     }
   },
   {
-    name: "Zeynep Aydın",
-    title: "Satış Temsilcisi",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1661&q=80",
-    description: "Marmara bölgesi müşterilerinden sorumlu, müşteri ilişkileri konusunda uzman.",
-    socials: {
-      linkedin: "#",
-      facebook: "#"
-    }
-  },
-  {
-    name: "Can Özkan",
-    title: "Satış Temsilcisi",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-    description: "Ege bölgesi müşterilerinden sorumlu, 7 yıllık sektör deneyimine sahip.",
-    socials: {
-      linkedin: "#",
-      instagram: "#"
-    }
-  },
-  {
-    name: "Elif Yıldız",
-    title: "Satış Temsilcisi",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-    description: "Karadeniz bölgesi müşterilerinden sorumlu, müşteri memnuniyeti odaklı çalışır.",
+    name: "Anıl Samur",
+    title: "Satış Şefi",
+    image: "/lovable-uploads/076a5834-43c1-497c-8b8f-ba97de66a0da.png",
+    description: "Müşteri ilişkileri ve satış operasyonlarının yönetiminden sorumludur.",
     socials: {
       linkedin: "#"
     }
   },
   {
-    name: "Murat Bilgin",
+    name: "KEREM KARAPÜRÇEK",
     title: "Satış Temsilcisi",
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-    description: "Doğu Anadolu bölgesi müşterilerinden sorumlu, saha satış deneyimi yüksek.",
+    image: "/lovable-uploads/9b8b9cde-7c72-4908-8c8d-3b7982ed5587.png",
+    description: "Satış stratejilerinin geliştirilmesi ve uygulanmasından sorumludur.",
     socials: {
-      linkedin: "#",
-      twitter: "#"
+      linkedin: "#"
+    }
+  },
+  {
+    name: "Onur Enginyol",
+    title: "Ezd Merchendiser",
+    image: "/lovable-uploads/a1965ce6-f319-458b-a4df-291fe5c7ea57.png",
+    description: "Müşteri portföyü yönetimi ve yeni iş geliştirme sorumlusudur.",
+    socials: {
+      linkedin: "#"
+    }
+  },
+  {
+    name: "Alican Pool",
+    title: "Satış Temsilcisi",
+    image: "/lovable-uploads/4f391e33-32d7-47ec-a906-4d2c97e7406e.png",
+    description: "Müşteri portföyü yönetimi ve yeni iş geliştirmeden sorumlu.",
+    socials: {
+      linkedin: "#"
+    }
+  },
+  {
+    name: "Cenk Çolak",
+    title: "Ezd Merchendiser",
+    image: "/lovable-uploads/53a20f65-54c2-4350-b9fb-a889e4e65767.png",
+    description: "Müşteri ilişkileri ve satış operasyonlarının yönetiminden sorumludur.",
+    socials: {
+      linkedin: "#"
     }
   }
 ];
