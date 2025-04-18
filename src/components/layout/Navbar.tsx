@@ -12,7 +12,7 @@ const menuItems = [
     name: 'Biz Kimiz', 
     path: '/about', 
     submenu: [
-      { name: 'Ekibimiz', path: '/team' }
+      { name: 'Ekibimiz', path: '/team' } // Maintaining existing path
     ] 
   },
   { 
