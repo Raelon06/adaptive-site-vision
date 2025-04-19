@@ -8,7 +8,7 @@ const teamMembers = [
     name: "Olcay Köksal",
     title: "SATIŞ ŞEFİ",
     image: "/lovable-uploads/41d6d981-92f9-446f-9767-229ca9a7aeb1.png",
-    description: "Satış ekibinin koordinasyonu ve performans yönetiminden sorumludur.",
+    description: "Satış ekibinin koordinasyonu ve performansın yönetiminde sorumludur.\n\nSorumlu Olduğu Alanlar:\n- Sapanca\n- Serdivan Üniversite\n- Geyve\n- Pamukova\n- Camili Karaman",
     socials: {
       linkedin: "#"
     }
@@ -17,7 +17,7 @@ const teamMembers = [
     name: "Anıl Samur",
     title: "Satış Şefi",
     image: "/lovable-uploads/076a5834-43c1-497c-8b8f-ba97de66a0da.png",
-    description: "Müşteri ilişkileri ve satış operasyonlarının yönetiminden sorumludur.",
+    description: "Satış ekibinin koordinasyonu ve performansın yönetiminde sorumludur.\n\nSorumlu Olduğu Alanlar:\n- Akyazı\n- Karapürçek Küçücek",
     socials: {
       linkedin: "#"
     }
