@@ -26,7 +26,7 @@ const teamMembers = [
     name: "KEREM KARAPÜRÇEK",
     title: "Satış Temsilcisi",
     image: "/lovable-uploads/9b8b9cde-7c72-4908-8c8d-3b7982ed5587.png",
-    description: "Satış stratejilerinin geliştirilmesi ve uygulanmasından sorumludur.",
+    description: "Satış Hedeflerini tutmak ve dijital konularda bayilerin gelişimine destek vermekle sorumludur.",
     socials: {
       linkedin: "#"
     }
@@ -44,7 +44,7 @@ const teamMembers = [
     name: "Alican Pool",
     title: "Satış Temsilcisi",
     image: "/lovable-uploads/4f391e33-32d7-47ec-a906-4d2c97e7406e.png",
-    description: "Müşteri portföyü yönetimi ve yeni iş geliştirmeden sorumlu.",
+    description: "Satış Hedeflerini tutmak ve dijital konularda bayilerin gelişimine destek vermekle sorumludur",
     socials: {
       linkedin: "#"
     }
@@ -65,7 +65,7 @@ const Team = () => {
     <Layout>
       <HeroSection
         title="Satış Ekibimiz"
-        subtitle="Alanında uzman profesyonel ekibimizle tanışın"
+        subtitle="Sakarya Güney Batı ekibi ile tanışın!."
         backgroundImage="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
       />
 
