@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 const visionItems = [
   {
     title: "Teknolojik Dönüşüm",
-    image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+    image: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fyandex.com.tr%2Fharita%2Forg%2Fguzel_ltd_sti_the_reds_mersin%2F231941494137%2F&psig=AOvVaw1Q1lUJ_O9HVC0Ag_uAEnTo&ust=1745231365327000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCPjOlc6z5owDFQAAAAAdAAAAABAE",
     description: "2025 yılına kadar dijital dönüşümümüzü tamamlayarak, tüm süreçlerimizi yapay zeka ve otomasyonla destekleyeceğiz. Bu sayede operasyonel verimliliğimizi artırarak, müşterilerimize daha hızlı ve kaliteli hizmet sunacağız.",
   },
   {
