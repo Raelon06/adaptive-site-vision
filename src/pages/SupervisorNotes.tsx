@@ -8,18 +8,18 @@ import { FileText, Calendar, User, CheckCircle } from "lucide-react";
 const supervisorNotes = [
   {
     id: 1,
-    date: "15 Mart 2024",
-    author: "Ahmet Yılmaz",
-    title: "EZD Süreç İyileştirmeleri",
-    content: "EZD süreçlerinde yapılan iyileştirmeler sonucunda işlem süreleri %20 azaltıldı. Tüm supervisor ekibinin bu yeni süreçlere adaptasyonu için gerekli eğitimler planlandı.",
+    date: "15 Nisan 2025",
+    author: "Olcay Köksal",
+    title: "EZD Gece Çalışmaları",
+    content: "Ezd Ekibimiz ile birlikte; 20 kişi Sakarya Serdivan'da Marlboro Touch Gray Geri Geldi Lansmanı doğrultusunda 200'e yakın reaktif bilgilendirme yapıldı.",
     tags: ["süreç", "iyileştirme", "eğitim"]
   },
   {
     id: 2,
-    date: "2 Nisan 2024",
-    author: "Ayşe Kaya",
-    title: "Saha Ekibi Performans Değerlendirmesi",
-    content: "Mart ayı performans değerlendirmesi sonuçları paylaşıldı. Batı bölgesinde hedeflerin %110'u gerçekleştirildi. Sakarya Güney bölgesinde ise hedeflerin %95'ine ulaşıldı. İyileştirme planları hazırlanacak.",
+    date: "17 Nisan 2025",
+    author: "Olcay Köksal",
+    title: "Marlboro Touch Gray ReLansman Sonuçları",
+    content: "24 Mart itibari ile performans değerlendirmesi sonuçları paylaşıldı.",
     tags: ["performans", "değerlendirme", "hedefler"]
   },
   {
