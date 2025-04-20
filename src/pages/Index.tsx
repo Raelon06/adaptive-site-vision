@@ -93,7 +93,7 @@ const Index = () => {
     <Layout>
       <HeroSection
         title="Sakarya Güney Batıya Hoş Geldiniz"
-        subtitle="SGB olarak, bölgemizdeki tüm müşterilerimize en kaliteli hizmeti sunmak için buradayız. Profesyonel ekibimizle her zaman yanınızdayız."
+        subtitle="SGB olarak, bölgemizdeki tüm müşterilerimize en kaliteli hizmeti sunmak için buradayız."
         backgroundImage="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
       >
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -110,7 +110,7 @@ const Index = () => {
         <div className="container-custom">
           <SectionHeader
             title="2025 Sakarya Güney Batı Ekibi"
-            subtitle="Modern, dinamik ve başarıya odaklı profesyonellerimizle geleceği şekillendiriyoruz"
+            subtitle="Modern, dinamik ve başarıya odaklı satış ekibimizle geleceği şekillendiriyoruz"
             className="text-center"
           />
 
@@ -175,13 +175,13 @@ const Index = () => {
             />
             <ContentCard
               title="Büyüme Stratejimiz"
-              description="2025 yılına kadar sürdürülebilir büyüme için geliştirdiğimiz stratejilerimiz"
+              description="2026 yılına kadar sürdürülebilir büyüme için geliştirdiğimiz stratejilerimiz"
               image="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
               link="/2025"
             />
             <ContentCard
               title="Yeni Pazarlar"
-              description="2025 yılında faaliyet göstermeyi planladığımız yeni pazarlar ve bölgeler"
+              description="2025 yılında çözümlenmesi gereken problemler ve çözüm önerileri"
               image="https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1771&q=80"
               link="/2025"
             />
@@ -201,8 +201,8 @@ const Index = () => {
       <section className="py-20">
         <div className="container-custom">
           <SectionHeader
-            title="Sakarya Bölge Haritamız"
-            subtitle="Modern ve interaktif haritamız ile bölgemizi keşfedin"
+            title="Sakarya Güney Batı Bölge Haritamız"
+            subtitle="Bölgemizi keşfedin"
           />
           <SakaryaMap />
         </div>
@@ -213,7 +213,7 @@ const Index = () => {
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Sizinle Çalışmaya Hazırız</h2>
             <p className="text-xl text-gray-100 mb-8">
-              Hedefinize ulaşmanız için destek olmak üzere buradayız. Profesyonel ekibimizle her zaman yanınızdayız.
+              The Reds Halleder.
             </p>
             <Button asChild size="lg" className="bg-white text-brand-700 hover:bg-gray-100">
               <a href="mailto:info@pmi.com">Hemen İletişime Geçin</a>
