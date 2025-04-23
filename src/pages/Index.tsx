@@ -69,7 +69,7 @@ const teamMembers = [
     }
   },
   {
-    name: "Alican Pool",
+    name: "Alican GÜRSES",
     title: "Satış Temsilcisi",
     image: "/lovable-uploads/4f391e33-32d7-47ec-a906-4d2c97e7406e.png",
     description: "Müşteri portföyü yönetimi ve yeni iş geliştirmeden sorumlu.",
@@ -78,7 +78,7 @@ const teamMembers = [
     }
   },
   {
-    name: "Cenk Çolak",
+    name: "Cenk ÇOLAK",
     title: "Ezd Merchendiser",
     image: "/lovable-uploads/53a20f65-54c2-4350-b9fb-a889e4e65767.png",
     description: "Müşteri ilişkileri ve satış operasyonlarının yönetiminden sorumludur.",
@@ -180,7 +180,7 @@ const Index = () => {
               link="/2025"
             />
             <ContentCard
-              title="Yeni Pazarlar"
+              title="POSM HEDEFLERİ"
               description="2025 yılında çözümlenmesi gereken problemler ve çözüm önerileri"
               image="https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1771&q=80"
               link="/2025"
