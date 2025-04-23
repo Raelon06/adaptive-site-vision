@@ -27,8 +27,8 @@ const coachingPrograms = [
   {
     id: 2,
     title: "Müşteri İlişkileri Yönetimi",
-    coach: "Ayşe Kaya",
-    position: "Bölge Müdürü",
+    coach: "BERK BORA",
+    position: "SAHA & DİJİTAL İŞ GELİŞTİRME UZMANI",
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=776&q=80",
     banner: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
     description: "Uzun vadeli müşteri ilişkileri kurmak ve müşteri memnuniyetini artırmak için stratejiler.",
@@ -44,8 +44,8 @@ const coachingPrograms = [
   {
     id: 3,
     title: "Dijital Satış Stratejileri",
-    coach: "Mehmet Demir",
-    position: "Satış Temsilcisi",
+    coach: "SERKAN TAPŞIN",
+    position: "SALES COORDİNATOR",
     image: "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=768&q=80",
     banner: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
     description: "Dijital platformlarda etkili satış stratejileri geliştirmek ve online müşteri deneyimini optimize etmek.",
@@ -61,8 +61,8 @@ const coachingPrograms = [
   {
     id: 4,
     title: "İleri Düzey Pazarlama Teknikleri",
-    coach: "Zeynep Aydın",
-    position: "Satış Temsilcisi",
+    coach: "BERK BORA",
+    position: ""SAHA & DİJİTAL İŞ GELİŞTİRME UZMANI"",
     image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1661&q=80",
     banner: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
     description: "Pazarlama stratejilerini geliştirmek ve müşteri segmentasyonu ile hedef odaklı kampanyalar oluşturmak.",
@@ -78,8 +78,8 @@ const coachingPrograms = [
   {
     id: 5,
     title: "Liderlik ve Takım Yönetimi",
-    coach: "Can Özkan",
-    position: "Satış Temsilcisi",
+    coach: "BERK BORA",
+    position: ""SAHA & DİJİTAL İŞ GELİŞTİRME UZMANI"",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
     banner: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
     description: "Etkili liderlik becerileri geliştirmek ve takım performansını artırmak için stratejiler.",
