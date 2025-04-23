@@ -10,8 +10,8 @@ const coachingPrograms = [
   {
     id: 1,
     title: "Satış Teknikleri Eğitimi",
-    coach: "Ahmet Yılmaz",
-    position: "Satış Direktörü",
+    coach: "BERK BORA",
+    position: ""SAHA & DİJİTAL İŞ GELİŞTİRME UZMANI",
     image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
     banner: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
     description: "Müşteri ihtiyaçlarını anlamak ve etkili satış teknikleri geliştirmek için kapsamlı bir eğitim programı.",
