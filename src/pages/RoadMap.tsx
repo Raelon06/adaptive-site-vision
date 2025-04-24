@@ -10,8 +10,8 @@ const roadmapQuarters = [
     quarter: "Q1 2024",
     milestones: [
       "Sakarya Güney bölgesi ekip yapılanmasının tamamlanması",
-      "Batı bölgesi satış hedeflerinin %10 artırılması",
-      "Yeni bayi konumlarının belirlenmesi"
+      "Forward Stock Share Rakamlarının Arttırılması",
+      "Posm Slot Sayısı Hesaplamalarına göre Slot Arttırım Çalışması"
     ]
   },
   {
