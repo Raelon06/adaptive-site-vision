@@ -7,7 +7,7 @@ import { Map } from "lucide-react";
 
 const roadmapQuarters = [
   {
-    quarter: "Q1 2024",
+    quarter: "Q1-Q2 2025",
     milestones: [
       "Sakarya Güney bölgesi ekip yapılanmasının tamamlanması",
       "Forward Stock Share Rakamlarının Arttırılması",
