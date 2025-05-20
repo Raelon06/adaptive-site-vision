@@ -5,6 +5,10 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { Send, Bot, X } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+
+// Gemini API anahtarı
+const GEMINI_API_KEY = "AIzaSyBCE4aREy_f1M3273dro3eWwG9S87n9BHo";
 
 export const GeminiChat = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,8 +18,55 @@ export const GeminiChat = () => {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const { toast } = useToast();
 
-  // Simulate Gemini AI response
+  // Gemini API'ye istek gönderen fonksiyon
+  const fetchGeminiResponse = async (prompt: string) => {
+    try {
+      const response = await fetch(
+        `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            contents: [
+              {
+                parts: [
+                  {
+                    text: prompt,
+                  },
+                ],
+              },
+            ],
+            generationConfig: {
+              temperature: 0.7,
+              topK: 40,
+              topP: 0.95,
+              maxOutputTokens: 1000,
+            },
+          }),
+        }
+      );
+
+      const data = await response.json();
+      
+      if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+        return data.candidates[0].content.parts[0].text;
+      } else if (data.error) {
+        console.error("Gemini API hatası:", data.error);
+        throw new Error(data.error.message || "API yanıtı alınamadı");
+      } else {
+        throw new Error("Beklenmeyen API yanıt formatı");
+      }
+    } catch (error) {
+      console.error("API isteği sırasında hata:", error);
+      throw error;
+    }
+  };
+
+  // Mesaj gönderme işlemi
   const handleSendMessage = async () => {
     if (!input.trim()) return;
     
@@ -24,23 +75,30 @@ export const GeminiChat = () => {
     setInput('');
     setIsLoading(true);
     
-    // Simulate AI thinking time
-    setTimeout(() => {
-      const responses = [
-        "Satış hedeflerinize ulaşmanız için size yardımcı olabilirim.",
-        "SGB ekibimiz ile ilgili daha detaylı bilgi ana sayfamızda mevcuttur.",
-        "2025 stratejilerimiz hakkında detaylı bilgilere menüden ulaşabilirsiniz.",
-        "Size daha detaylı bilgi vermek için sorularınızı bekliyorum.",
-        "Bu konuda size yardımcı olmak için ekip yöneticinizle görüşmenizi öneririm."
-      ];
-      const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+    try {
+      // Gemini API'den yanıt al
+      const responseText = await fetchGeminiResponse(`SGB Satış Destek Asistanı olarak yanıtla: ${input}`);
       
       setMessages(prev => [...prev, { 
         role: 'assistant', 
-        content: randomResponse
+        content: responseText
       }]);
+    } catch (error) {
+      console.error("API hatası:", error);
+      toast({
+        title: "Hata",
+        description: "Yanıt alınırken bir sorun oluştu. Lütfen tekrar deneyin.",
+        variant: "destructive",
+      });
+      
+      // Hata durumunda yedek yanıt göster
+      setMessages(prev => [...prev, { 
+        role: 'assistant', 
+        content: "Üzgünüm, şu anda yanıt veremiyorum. Lütfen daha sonra tekrar deneyin veya farklı bir soru sorun."
+      }]);
+    } finally {
       setIsLoading(false);
-    }, 1000);
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
