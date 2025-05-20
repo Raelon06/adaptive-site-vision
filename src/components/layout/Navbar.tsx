@@ -1,6 +1,7 @@
+
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, CalendarDays, Map, FileText, LogOut, Users } from 'lucide-react';
+import { Menu, X, ChevronDown, CalendarDays, Map, FileText, LogOut, Users, Code } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/contexts/AuthContext';
@@ -31,6 +32,11 @@ const menuItems = [
   { name: 'Koçluk', path: '/coaching' },
   { name: 'Yapay Zeka', path: '/ai-news' },
   { name: 'Eğitim', path: '/training' },
+  { 
+    name: 'Developer Area', 
+    path: '/dev-area',
+    icon: <Code className="h-4 w-4 mr-1" />
+  },
 ];
 
 export default function Navbar() {

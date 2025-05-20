@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -18,6 +17,7 @@ import Training from "./pages/Training";
 import NotFound from "./pages/NotFound";
 import RoadMap from "./pages/RoadMap";
 import SupervisorNotes from "./pages/SupervisorNotes";
+import DeveloperArea from "./pages/DeveloperArea";
 import { useState, useEffect } from "react";
 
 const queryClient = new QueryClient();
@@ -72,6 +72,7 @@ const AppRoutes = () => {
       <Route path="/coaching" element={<ProtectedRoute><Coaching /></ProtectedRoute>} />
       <Route path="/ai-news" element={<ProtectedRoute><AINews /></ProtectedRoute>} />
       <Route path="/training" element={<ProtectedRoute><Training /></ProtectedRoute>} />
+      <Route path="/dev-area" element={<ProtectedRoute><DeveloperArea /></ProtectedRoute>} />
       
       <Route path="*" element={<NotFound />} />
     </Routes>

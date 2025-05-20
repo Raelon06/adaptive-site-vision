@@ -1,8 +1,10 @@
+
 import { Button } from "@/components/ui/button";
 import { HeroSection } from "@/components/ui/hero-section";
 import { SectionHeader } from "@/components/ui/section-header";
 import { ContentCard } from "@/components/ui/content-card";
 import { TeamCard } from "@/components/ui/team-card";
+import { GeminiChat } from "@/components/ui/gemini-chat";
 import Layout from "@/components/layout/Layout";
 import { Link } from "react-router-dom";
 import { CheckCircle, ArrowRight, Users, Target, Brain, Trophy } from "lucide-react";
@@ -221,6 +223,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+      
+      {/* Add the Gemini Chat component */}
+      <GeminiChat />
     </Layout>
   );
 };
