@@ -20,11 +20,12 @@ export const GeminiChat = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
-  // Gemini API'ye istek gönderen fonksiyon
+  // Güncellenmiş Gemini API'ye istek gönderen fonksiyon
   const fetchGeminiResponse = async (prompt: string) => {
     try {
+      // API endpoint'i güncellenmiş v1beta versiyonunu kullanacak şekilde düzenlenmiştir
       const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=${GEMINI_API_KEY}`,
         {
           method: "POST",
           headers: {
@@ -33,6 +34,7 @@ export const GeminiChat = () => {
           body: JSON.stringify({
             contents: [
               {
+                role: "user",
                 parts: [
                   {
                     text: prompt,
