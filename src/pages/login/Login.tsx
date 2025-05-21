@@ -6,7 +6,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Shield } from "lucide-react";
+import { Lock } from "lucide-react";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -103,14 +103,14 @@ export default function Login() {
             {/* SSL Certificate Image - Updated */}
             <div className="mt-8 pt-6 border-t border-gray-200">
               <div className="flex items-center justify-center space-x-2 text-sm text-gray-500 mb-3">
-                <Shield className="w-4 h-4 text-green-600" />
+                <Lock className="w-4 h-4 text-blue-500" />
                 <span>SSL Sertifikası ile Korunan Güvenli Giriş</span>
               </div>
               <div className="flex justify-center">
                 <img 
-                  src="/lovable-uploads/51967763-46c1-4670-98a7-2f8b1bbb5e84.png" 
+                  src="/lovable-uploads/814a5edf-65d2-44ae-90a4-9c36c367e005.png" 
                   alt="SSL Güvenlik Sertifikası" 
-                  className="h-12 rounded-lg shadow-sm" 
+                  className="h-10 rounded-lg" 
                 />
               </div>
             </div>
