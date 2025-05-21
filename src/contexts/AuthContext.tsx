@@ -38,7 +38,30 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       // Simulate API call delay
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      // Check if username is a valid PMI email (custom rules for PMI domain emails)
+      // Fixed credentials check - Allow everyone to login with admin/admin123
+      if (username === "admin" && password === "admin123") {
+        const userData: User = {
+          id: Date.now().toString(),
+          email: "admin@example.com", // Default admin email
+          password: password,
+          name: "Admin",
+          role: 'admin'
+        };
+        
+        // Save user and session
+        saveUser(userData);
+        setUser(userData);
+        localStorage.setItem(ACTIVE_USER_KEY, JSON.stringify(userData));
+        
+        toast({
+          title: "Giriş başarılı",
+          description: "Hoş geldiniz, Admin!",
+        });
+        
+        return;
+      }
+      
+      // If not using fixed credentials, check if username is a valid PMI email
       const email = username.includes('@') ? username : `${username}@example.com`;
       const isPmiUser = isValidPmiEmail(email);
       
