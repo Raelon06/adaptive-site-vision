@@ -100,7 +100,7 @@ export default function Login() {
               </Button>
             </form>
             
-            {/* SSL Certificate Image */}
+            {/* SSL Certificate Image - Updated */}
             <div className="mt-8 pt-6 border-t border-gray-200">
               <div className="flex items-center justify-center space-x-2 text-sm text-gray-500 mb-3">
                 <Shield className="w-4 h-4 text-green-600" />
@@ -108,9 +108,9 @@ export default function Login() {
               </div>
               <div className="flex justify-center">
                 <img 
-                  src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  src="/lovable-uploads/51967763-46c1-4670-98a7-2f8b1bbb5e84.png" 
                   alt="SSL Güvenlik Sertifikası" 
-                  className="h-16 rounded-lg shadow-sm"
+                  className="h-12 rounded-lg shadow-sm" 
                 />
               </div>
             </div>
