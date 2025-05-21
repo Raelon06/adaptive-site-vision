@@ -9,6 +9,7 @@ import Layout from "@/components/layout/Layout";
 import { Link } from "react-router-dom";
 import { CheckCircle, ArrowRight, Users, Target, Brain, Trophy } from "lucide-react";
 import SakaryaMap from '@/components/maps/SakaryaMap';
+import { AspectImage } from "@/components/ui/aspect-image";
 
 const features = [
   {
@@ -107,6 +108,20 @@ const Index = () => {
           </Button>
         </div>
       </HeroSection>
+
+      {/* Yeni eklenen resim bölümü */}
+      <section className="py-16 bg-white">
+        <div className="container-custom">
+          <div className="max-w-2xl mx-auto">
+            <AspectImage 
+              src="/lovable-uploads/66f7f666-179c-4836-b16e-de3718c66172.png" 
+              alt="Galatasaray Futbolcusu" 
+              aspectRatio={16/9}
+              className="shadow-xl rounded-xl hover:shadow-2xl transition-all duration-300"
+            />
+          </div>
+        </div>
+      </section>
 
       <section className="py-20 bg-gray-50">
         <div className="container-custom">
