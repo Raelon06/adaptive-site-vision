@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { HeroSection } from "@/components/ui/hero-section";
 import { SectionHeader } from "@/components/ui/section-header";
@@ -16,6 +15,7 @@ import {
   CarouselNext, 
   CarouselPrevious 
 } from "@/components/ui/carousel";
+import { useEffect, useState } from "react";
 
 const features = [
   {
@@ -108,9 +108,26 @@ const heroImages = [
 ];
 
 const Index = () => {
+  const [api, setApi] = useState<any>(null);
+
+  // Setup autoplay when the component mounts
+  useEffect(() => {
+    if (!api) return;
+
+    // Start the autoplay interval
+    const autoplayInterval = setInterval(() => {
+      api.scrollNext();
+    }, 5000); // Change slide every 5 seconds
+
+    // Clear the interval when component unmounts
+    return () => {
+      clearInterval(autoplayInterval);
+    };
+  }, [api]);
+
   return (
     <Layout>
-      <Carousel className="relative w-full">
+      <Carousel className="relative w-full" setApi={setApi} opts={{ loop: true }}>
         <CarouselContent>
           {heroImages.map((image, index) => (
             <CarouselItem key={index} className="w-full">
