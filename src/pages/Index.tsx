@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { HeroSection } from "@/components/ui/hero-section";
 import { SectionHeader } from "@/components/ui/section-header";
@@ -8,6 +9,13 @@ import Layout from "@/components/layout/Layout";
 import { Link } from "react-router-dom";
 import { CheckCircle, ArrowRight, Users, Target, Brain, Trophy } from "lucide-react";
 import SakaryaMap from '@/components/maps/SakaryaMap';
+import { 
+  Carousel, 
+  CarouselContent, 
+  CarouselItem, 
+  CarouselNext, 
+  CarouselPrevious 
+} from "@/components/ui/carousel";
 
 const features = [
   {
@@ -89,23 +97,47 @@ const teamMembers = [
   }
 ];
 
+// Hero section carousel images
+const heroImages = [
+  {
+    backgroundImage: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+  },
+  {
+    backgroundImage: "/lovable-uploads/ae1bbad5-23e4-4f41-a433-f7c1a0261212.png",
+  }
+];
+
 const Index = () => {
   return (
     <Layout>
-      <HeroSection
-        title="Sakarya Güney Batıya Hoş Geldiniz"
-        subtitle="SGB olarak, bölgemizdeki tüm müşterilerimize en kaliteli hizmeti sunmak için buradayız."
-        backgroundImage="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-      >
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button asChild size="lg" className="bg-white text-brand-700 hover:bg-gray-100">
-            <Link to="/about">Biz Kimiz</Link>
-          </Button>
-          <Button asChild size="lg" variant="outline" className="text-white border-white hover:bg-white/10">
-            <Link to="/team">Ekibimiz</Link>
-          </Button>
+      <Carousel className="relative w-full">
+        <CarouselContent>
+          {heroImages.map((image, index) => (
+            <CarouselItem key={index} className="w-full">
+              <HeroSection
+                title="Sakarya Güney Batıya Hoş Geldiniz"
+                subtitle="İnceliğin En Güçlü Hali... Marlboro Edge Slims"
+                backgroundImage={image.backgroundImage}
+              >
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button asChild size="lg" className="bg-white text-brand-700 hover:bg-gray-100">
+                    <Link to="/about">Biz Kimiz</Link>
+                  </Button>
+                  <Button asChild size="lg" variant="outline" className="text-white border-white hover:bg-white/10">
+                    <Link to="/team">Ekibimiz</Link>
+                  </Button>
+                </div>
+              </HeroSection>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <div className="absolute bottom-4 left-0 right-0 z-20 flex justify-center">
+          <div className="bg-black/50 rounded-full px-4 py-2">
+            <CarouselPrevious className="relative h-8 w-8 -left-0 translate-x-0 translate-y-0 text-white" />
+            <CarouselNext className="relative h-8 w-8 -right-0 translate-x-0 translate-y-0 text-white" />
+          </div>
         </div>
-      </HeroSection>
+      </Carousel>
 
       <section className="py-20 bg-gray-50">
         <div className="container-custom">
