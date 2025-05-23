@@ -86,6 +86,7 @@ export default function Navbar() {
           />
         </Link>
 
+        {/* Desktop menu */}
         <div className="hidden md:flex items-center space-x-1">
           {menuItems.map((item) => (
             <div key={item.name} className="relative group">
@@ -185,13 +186,14 @@ export default function Navbar() {
         </div>
       </div>
 
+      {/* Mobile menu - Fixed positioning with improved opacity */}
       <div
         className={cn(
-          "md:hidden fixed inset-0 z-50 bg-white transform transition-transform ease-in-out duration-300",
+          "md:hidden fixed inset-0 z-50 bg-white/100 transform transition-transform ease-in-out duration-300",
           isOpen ? "translate-x-0" : "translate-x-full"
         )}
       >
-        <div className="flex items-center justify-between p-4 border-b">
+        <div className="flex items-center justify-between p-4 border-b bg-white">
           <div className="flex items-center space-x-2">
             <img 
               src="/lovable-uploads/942c5a63-00ab-421a-89f8-d8a625bca962.png" 
@@ -210,7 +212,7 @@ export default function Navbar() {
             <X className="h-6 w-6" />
           </button>
         </div>
-        <div className="p-4 space-y-1">
+        <div className="p-4 space-y-1 bg-white h-full overflow-y-auto">
           {menuItems.map((item) => (
             <div key={item.name} className="py-1">
               {item.submenu ? (
@@ -228,7 +230,7 @@ export default function Navbar() {
                     />
                   </button>
                   {openSubmenu === item.name && (
-                    <div className="pl-4 py-1 space-y-1 animate-fade-in">
+                    <div className="pl-4 py-1 space-y-1 animate-fade-in bg-white">
                       {item.submenu.map((subItem) => (
                         <Link
                           key={subItem.name}
