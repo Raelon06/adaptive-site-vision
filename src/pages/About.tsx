@@ -15,7 +15,7 @@ const About = () => {
         backgroundImage="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1769&q=80"
       />
 
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
@@ -37,11 +37,11 @@ const About = () => {
                 </Link>
               </Button>
             </div>
-            <div>
+            <div className="bg-white p-4 rounded-lg shadow-lg">
               <img 
                 src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1771&q=80" 
                 alt="PMI Ofis" 
-                className="rounded-lg shadow-xl" 
+                className="rounded-lg w-full h-full object-cover" 
               />
             </div>
           </div>
@@ -107,7 +107,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="container-custom">
           <SectionHeader
             title="Değerlerimiz"

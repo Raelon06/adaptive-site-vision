@@ -46,15 +46,15 @@ export function TeamCard({
         objectFit="cover"
       />
       
-      <div className="p-6">
+      <div className="p-6 bg-white">
         <h3 className="text-xl font-semibold mb-1">{name}</h3>
         <p className="text-brand-600 mb-3">{title}</p>
         {description && (
-          <p className="text-gray-600 mb-4 text-sm">{description}</p>
+          <p className="text-gray-600 mb-4 text-sm whitespace-pre-line">{description}</p>
         )}
         
         {socials && (
-          <div className="flex space-x-3 mt-3">
+          <div className="flex space-x-3 mt-3 bg-white">
             {socials.linkedin && (
               <a 
                 href={socials.linkedin} 

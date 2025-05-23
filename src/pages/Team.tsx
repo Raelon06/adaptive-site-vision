@@ -1,3 +1,4 @@
+
 import Layout from "@/components/layout/Layout";
 import { HeroSection } from "@/components/ui/hero-section";
 import { TeamCard } from "@/components/ui/team-card";
@@ -69,14 +70,14 @@ const Team = () => {
         backgroundImage="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
       />
 
-      <section className="py-20">
+      <section className="py-20 bg-gray-50">
         <div className="container-custom">
           <SectionHeader
             title="Profesyonel Ekibimiz"
             subtitle="Deneyimli ekibimiz, müşterilerimize en iyi hizmeti sunmak için çalışıyor."
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {teamMembers.map((member, index) => (
               <TeamCard
                 key={index}
@@ -91,7 +92,7 @@ const Team = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-white">
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
@@ -135,11 +136,11 @@ const Team = () => {
                 </li>
               </ul>
             </div>
-            <div>
+            <div className="bg-white p-4 rounded-lg shadow-md">
               <img 
                 src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" 
                 alt="Ekip Çalışması" 
-                className="rounded-lg shadow-xl" 
+                className="rounded-lg w-full h-full object-cover" 
               />
             </div>
           </div>
