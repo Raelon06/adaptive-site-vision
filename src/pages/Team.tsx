@@ -74,7 +74,8 @@ const Team = () => {
         <div className="container-custom">
           <SectionHeader
             title="Profesyonel Ekibimiz"
-            subtitle="Deneyimli ekibimiz, müşterilerimize en iyi hizmeti sunmak için çalışıyor."
+            subtitle="Marlboro Edge Slim İNCELİĞİN EN GÜÇLÜ HALİ"
+            className="text-black"
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
